@@ -32,7 +32,7 @@
   import { DndDirective } from './directives/dnd.directive';
 
   import { SimpleInterceptor } from './@auth/http-interceptor.service';
-  import { AuthGuard } from './@auth/auth-guard.service';
+  // import { AuthGuard } from './@auth/auth-guard.service';
   import { PipesModule } from './pipes/pipes.module';
   import { MatTableModule } from '@angular/material/table';
   import { MatSortModule } from '@angular/material/sort';
@@ -99,7 +99,6 @@
       //   multi: true,
       // },
       { provide: LOCALE_ID, useValue: 'pt-BR' },
-      AuthGuard,
       {
         provide: HTTP_INTERCEPTORS,
         useClass: NbAuthSimpleInterceptor,

@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule, ExtraOptions } from '@angular/router';
-import { AuthGuard } from './@auth/auth-guard.service';
+// import { AuthGuard } from './@auth/auth-guard.service';
 // import { PermGuard } from './@auth/perm-guard.service';
 
 export const routes: Routes = [
   {
     path: 'dashboard',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./pages/pages.module').then((m) => m.PagesModule),
   },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 
-  {
-    path: 'auth',
-    loadChildren: () => import('./@auth/auth.module').then((m) => m.NgxAuthModule),
-  },
+  // {
+  //   path: 'auth',
+  //   loadChildren: () => import('./@auth/auth.module').then((m) => m.NgxAuthModule),
+  // },
 
   // {
   //   path: 'adm',
@@ -25,7 +25,7 @@ export const routes: Routes = [
   // },
   {
     path: '**',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./pages/pages.module').then((m) => m.PagesModule),
   },
 ];
