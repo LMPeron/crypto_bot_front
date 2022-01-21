@@ -1,0 +1,39 @@
+@import "../../../@theme/styles/themes.scss";
+@import "~bootstrap/scss/mixins";
+
+@include nb-install-component() {
+  ::ng-deep {
+    .search-bar {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .col-85p {
+      width: 85%;
+    }
+
+    .col-15p {
+      width: 15%;
+    }
+
+    .padding-small {
+      padding: 0.5rem;
+    }
+
+    .search-input {
+      background: transparent;
+      border: none;
+    }
+
+    .filter-icon {
+      padding: 0.4625rem 0.3375rem !important;
+      margin-right: 10px;
+      float: right;
+
+      nb-icon {
+        width: 2.1rem;
+        height: 2.1rem;
+      }
+    }
+  }
+}

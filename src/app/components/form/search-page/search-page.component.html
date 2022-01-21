@@ -1,0 +1,99 @@
+<div class="col-12">
+  <div class="row">
+    <div class="col-12">
+      <nb-card>
+        <nb-card-header> Resultados encontados para : {{ query }}</nb-card-header>
+      </nb-card>
+
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <nb-card [nbSpinner]="loadingProject">
+            <nb-card-header>Chamados</nb-card-header>
+            <nb-list>
+              <nb-list-item
+                *ngFor="let project of projectList"
+                [routerLink]="['/pages/chamados/', project.id]"
+                class="pointer"
+              >
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-6">
+                      <p>Chamado #{{ project.number }}</p>
+                    </div>
+                    <div class="col-6">
+                      <ng-container>
+                        <p [class]="project.status.class" class="fr">
+                          {{ project.status.label }}
+                        </p>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-12">Solicitado por : {{ project.requestedBy }}</div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12">
+                          {{ project.company.name }}
+                        </div>
+                      </div>
+
+                      <p>{{ project.name }}</p>
+                    </div>
+                  </div>
+                </div>
+              </nb-list-item>
+              <nb-list-item *ngIf="projectList.length === 0" class="pointer">
+                <div class="col-12">
+                  <p>Nenhum chamado encontrado.</p>
+                </div>
+              </nb-list-item>
+            </nb-list>
+          </nb-card>
+        </div>
+        <div class="col-12 col-md-6">
+          <nb-card [nbSpinner]="loadingTask">
+            <nb-card-header>Tarefas</nb-card-header>
+            <nb-list>
+              <nb-list-item *ngIf="taskList.length === 0" class="pointer">
+                <div class="col-12">
+                  <p>Nenhuma tarefa encontrada.</p>
+                </div>
+              </nb-list-item>
+              <nb-list-item *ngFor="let task of taskList" [routerLink]="['/pages/tarefas/', task.id]" class="pointer">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-6">
+                      <p>Tarefa #{{ task.number }}</p>
+                    </div>
+                    <div class="col-6">
+                      <ng-container>
+                        <p [class]="task.status.class" class="fr">
+                          {{ task.status.name }}
+                        </p>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-12">Solicitado por : {{ task.requestedBy }}</div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12">{{ task.companyName }} - {{ task.branchName }}</div>
+                      </div>
+                      <p>
+                        {{ task.description }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </nb-list-item>
+            </nb-list>
+          </nb-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

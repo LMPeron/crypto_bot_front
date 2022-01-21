@@ -1,0 +1,72 @@
+<table
+  mat-table
+  [dataSource]="dataSource"
+  [nbSpinner]="loading"
+  matSort
+  nbSpinnerStatus="primary"
+>
+
+  <!-- NAME -->
+  <ng-container matColumnDef="name" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header >Nome</th>
+    <td mat-cell *matCellDef="let data" class="leftAlign">
+      {{ data.name }}
+    </td>
+  </ng-container>
+
+  <!-- START DATE COLUMN -->
+  <ng-container matColumnDef="startDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Data de Início</th>
+    <td mat-cell *matCellDef="let data">
+      {{ data.startDate | date: 'dd/LL/yyyy' }}
+    </td>
+  </ng-container>
+
+  <!-- FINISH DATE COLUMN -->
+  <ng-container matColumnDef="finishDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Data de Término</th>
+
+    <td mat-cell *matCellDef="let data">
+      <div *ngIf="data.active"> {{ data.finishDate | date: 'dd/LL/yyyy' }} </div>
+      <div *ngIf="!data.active"> {{ data.endDate | date: 'dd/LL/yyyy' }} </div>
+    </td>
+  </ng-container>
+
+  <!-- CREATION DATE COLUMN -->
+  <ng-container matColumnDef="creationDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Criado em</th>
+    <td mat-cell *matCellDef="let data">
+      {{ data.creationDate | date: 'dd/LL/yyyy' }}
+    </td>
+  </ng-container>
+
+  <!-- ACTIONS -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Ações</th>
+    <td mat-cell *matCellDef="let element">
+      <nb-icon
+        status="primary"
+        nbTooltip="Editar"
+        icon="edit-2-outline"
+        [routerLink]="['/projetos/' + element.project.id + '/' + element.id]"
+      ></nb-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+    mat-row
+    (dblclick)="handleRowdbClick(row.id)"
+    nbTooltip="Duplo clique para editar "
+    nbTooltipPlacement="right"
+    *matRowDef="let row; columns: displayedColumns"
+  ></tr>
+</table>
+
+<table *ngIf="!loading">
+  <tr *ngIf="!dataSource.data.length">
+    <td style="text-align: center;" [attr.colspan]="displayedColumns.length">
+      <h6>Nenhum registro encontrado!</h6>
+    </td>
+  </tr>
+</table>  

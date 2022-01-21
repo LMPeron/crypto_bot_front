@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Rooster</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="assets/icons/rooster-r-roxo.svg" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="LB2 | Helpdesk" />
+    <meta name="application-name" content="LB2 | Helpdesk" />
+    <link
+      href="assets/icons/iphone5_splash.png"
+      media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="assets/icons/iphone6_splash.png"
+      media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="assets/icons/iphoneplus_splash.png"
+      media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="assets/icons/iphonex_splash.png"
+      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="assets/icons/iphonexr_splash.png"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="assets/icons/iphonexsmax_splash.png"
+      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="assets/icons/ipad_splash.png"
+      media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="assets/icons/ipadpro1_splash.png"
+      media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="assets/icons/ipadpro3_splash.png"
+      media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"
+    />
+    <link
+      href="assets/icons/ipadpro2_splash.png"
+      media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image"
+    />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <script async src="https://unpkg.com/pwacompat" crossorigin="anonymous"></script>
+    <meta name="theme-color" content="#ffc000" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  </head>
+
+  <body class="mat-typography">
+    <ngx-app>Loading...</ngx-app>
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-177880080-1', 'auto'); // <- add the UA-ID
+      // <- remove the last line
+    </script>
+    <style>
+      @-webkit-keyframes spin {
+        0% {
+          transform: rotate(0);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @-moz-keyframes spin {
+        0% {
+          -moz-transform: rotate(0);
+        }
+
+        100% {
+          -moz-transform: rotate(360deg);
+        }
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .spinner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1003;
+        background: #000000;
+        overflow: hidden;
+      }
+
+      img {
+        transition: visibility 0s, opacity 0.5s linear;
+        width: 10%;
+        -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+        -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
+      }
+
+      .spinner div:first-child {
+        display: block;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        width: 150px;
+        height: 150px;
+        margin: -75px 0 0 -75px;
+        border-radius: 50%;
+        box-shadow: 0 3px 3px 0 #ffd200;
+        transform: translate3d(0, 0, 0);
+        animation: spin 2s linear infinite;
+      }
+
+      .spinner div:first-child:after,
+      .spinner div:first-child:before {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+      }
+
+      .spinner {
+        text-align: center !important;
+        background-color: #12071f !important;
+        padding-top: 10%;
+      }
+
+      .spinner div:first-child:before {
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        box-shadow: 0 3px 3px 0 #ffd200;
+        -webkit-animation: spin 3s linear infinite;
+        animation: spin 3s linear infinite;
+      }
+
+      .spinner div:first-child:after {
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        box-shadow: 0 3px 3px 0 #ffd200;
+
+        animation: spin 1.5s linear infinite;
+      }
+      .cdk-global-scrollblock {
+        position: static !important;
+      }
+    </style>
+    <div id="nb-global-spinner" class="spinner">
+      <img src="assets/icons/rooster-r-roxo.svg" alt="" />
+
+      <!-- <div class="blob blob-0"></div>
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="blob blob-4"></div>
+      <div class="blob blob-5"></div> -->
+    </div>
+  </body>
+</html>

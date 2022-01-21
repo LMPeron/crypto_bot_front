@@ -1,0 +1,33 @@
+@media (max-width: 599px) {
+  // modal dailogs should be able to fill the fullscreen if required
+  .cdk-overlay-pane {
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+  }
+}
+
+:host {
+  nb-layout-column {
+    height: 80vw;
+  }
+
+  h5 {
+    text-align: center;
+  }
+
+  button + button {
+    margin-left: 1rem;
+  }
+
+  .dialog-card {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
+
+  @media (min-width: 40rem) {
+    .dialog-card {
+      width: 38rem;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+<form [formGroup]="commentForm">
+  <nb-card>
+    <nb-card-header>Comentários</nb-card-header>
+    
+    <ng-container *ngFor="let comment of comments">
+      <nb-card-body class="commentBody">
+        <div>
+          <span class="body">
+            {{ comment.body }}
+          </span>
+        </div>
+        <div class="info">
+          <span>{{ comment.author }} - </span>
+          <span> {{ comment.date | date: "dd MMMM yyyy" }}</span>
+          <span class="leftAuto"> #{{ comment.distanceToNow }}</span>
+        </div>
+      </nb-card-body>
+    </ng-container>
+
+    <!-- <nb-card-body>
+      <div class="col-12">
+        <textarea
+          nbInput
+          fullWidth
+          placeholder="Insira um novo comentário"
+          [status]="submited && f.body.invalid ? 'danger' : 'basic'"
+          placeholder="Insira uma descrição para seu chamado"
+          formControlName="body"
+          class="form-control"
+        ></textarea>
+      </div>
+    </nb-card-body> -->
+    <ng-container *ngIf="!showForm">
+      <nb-card-body>
+        <div class="col-12">Não há comentarios</div>
+      </nb-card-body>
+    </ng-container>
+    <ng-container *ngIf="showForm">
+      <nb-card-body>
+        <div class="col-12">
+          <textarea
+            nbInput
+            fullWidth
+            placeholder="Insira um novo comentário"
+            [status]="submited && f.body.invalid ? 'danger' : 'basic'"
+            placeholder="Insira uma descrição para seu chamado"
+            formControlName="body"
+            class="form-control mb10"
+            rows="5"
+            maxlength="1980"
+          ></textarea>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <button
+          class="fr"
+          nbButton
+          outline
+          status="primary"
+          (click)="addComment()"
+        >
+          ENVIAR
+        </button>
+      </nb-card-footer>
+    </ng-container>
+  </nb-card>
+</form>

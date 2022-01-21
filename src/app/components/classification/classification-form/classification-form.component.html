@@ -1,0 +1,37 @@
+<form [formGroup]="form" [nbSpinner]="loading" nbSpinnerStatus="primary" (ngSubmit)="onSubmit()">
+
+  <!-- FORM NAME -->
+  <div class="form-group row">
+    <div class="col-sm-12 col-md-12">
+      <div class="row">
+        <label for="inputName" class="col-12 col-sm-3 col-lg-2 col-form-label">Nome</label>
+        <div class="col-sm-12 col-xl-6">
+          <input
+            type="text"
+            #inputName
+            nbInput
+            fullWidth
+            placeholder=""
+            formControlName="name"
+            class="form-control"
+            name="inputDescription"
+            autofocus
+            [status]="f.name.dirty && f.name.invalid ? 'danger' : 'basic'"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM ACTIVE -->
+  <div class="form-group row">
+    <div class="col-sm-12 col-md-12">
+      <div class="row">
+        <label for="inputActive" class="col-12 col-sm-3 col-lg-2 col-form-label">Ativo</label>
+        <div class="col-12 col-sm-9 col-md-8">
+          <nb-toggle name="inputActive" #inputActive formControlName="active"></nb-toggle>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

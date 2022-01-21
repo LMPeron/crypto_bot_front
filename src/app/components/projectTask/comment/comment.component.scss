@@ -1,0 +1,25 @@
+@import "../../../@theme/styles/themes.scss";
+@import "~bootstrap/scss/mixins";
+
+@include nb-install-component() {
+  .commentBody {
+    border-bottom: solid 1px nb-theme(color-basic-1000);
+  }
+
+  .info {
+    margin-left: auto;
+    align-self: flex-end;
+    color: nb-theme(color-basic-500);
+    font-weight: 300;
+    font-size: 0.8125rem;
+    display: flex;
+  }
+
+  .leftAuto {
+    margin-left: auto;
+  }
+
+  .mb10 {
+    margin-bottom: 10px;
+  }
+}

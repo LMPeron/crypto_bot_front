@@ -1,0 +1,126 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$servicedesk-project-primary: mat-palette($mat-indigo);
+$servicedesk-project-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$servicedesk-project-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$servicedesk-project-theme: mat-light-theme((color: (primary: $servicedesk-project-primary,
+      accent: $servicedesk-project-accent,
+      warn: $servicedesk-project-warn,
+    )));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($servicedesk-project-theme);
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+@import 'themes';
+@import '~@nebular/theme/styles/globals';
+@import '~@nebular/auth/styles/globals';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/grid';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/theming';
+@import '~@ng-select/ng-select/themes/default.theme.css';
+@import '~angular2-multiselect-dropdown/themes/default.theme.css';
+
+@include mat-core();
+$custom-theme-primary: mat-palette($mat-grey, 300);
+$custom-theme-accent: mat-palette($mat-pink, a200, a100, a400);
+$custom-theme-warn: mat-palette($mat-red);
+$custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
+
+@include angular-material-theme($custom-theme);
+//@import './pace.theme';
+@import './layout';
+@import './overrides';
+
+@include nb-install() {
+  @include nb-theme-global();
+  @include nb-auth-global();
+  @include ngx-layout();
+  //@include ngx-pace-theme();
+  @include nb-overrides();
+}
+
+.ta-end {
+  text-align: end;
+}
+
+.pl-1 {
+  padding-left: 1%;
+}
+
+.pl-5 {
+  padding-left: 5%;
+}
+
+.pl-10 {
+  padding-left: 10%;
+}
+
+.pr-5 {
+  padding-right: 5%;
+}
+
+.pr-1 {
+  padding-right: 1%;
+}
+
+.pr-10 {
+  padding-right: 10%;
+}
+
+.pt-2 {
+  padding-top: 2%;
+}
+
+.pt-5 {
+  padding-top: 5%;
+}
+
+.medium {
+  font-size: medium;
+}
+
+.xxsmall {
+  font-size: xx-small;
+}
+
+.xsmall {
+  font-size: x-small;
+}
+
+.small {
+  font-size: small;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

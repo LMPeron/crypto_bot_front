@@ -1,0 +1,44 @@
+@import "../../../@theme/styles/themes.scss";
+@import "~bootstrap/scss/mixins";
+
+@include nb-install-component() {
+  nb-progress-bar {
+    flex: 1;
+    border-radius: 12px;
+    padding: 0.3rem 0;
+
+    ::ng-deep div.progress-container {
+      border: 1px solid nb-theme(color-basic-100);
+      border-radius: 12px;
+      width: 110px;
+      margin: 0 auto;
+      height: 14px;
+      position: sticky;
+      background-color: transparent;
+
+      span {
+        color: nb-theme(color-basic-100);
+        font-weight: 100;
+        font-size: 0.8rem;
+        position: absolute;
+        right: 38%;
+      }
+    }
+  }
+
+  .d-flex {
+    display: flex;
+  }
+
+  .flex-column {
+    flex-direction: column;
+  }
+
+  nb-tooltip {
+    white-space: pre-line;
+  }
+
+  .nb-tooltip {
+    white-space: pre-line;
+  }
+}

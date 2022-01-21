@@ -1,0 +1,22 @@
+<nb-card>
+  <nb-card-body class="pl-1 pr-1 pt-2">
+    <div class="row">
+      <div class="col">
+        <p class="inc-label">Rendimento 24h</p>
+
+        <h2 class="medium" *ngIf="!lastDayIncome"><span class="medium">U$</span> --</h2>
+
+        <h2 *ngIf="lastDayIncome" [class]="lastDayIncome > 0 ? 'income-success' : 'income-danger'">
+          <span class="medium">U$</span> {{ moneyFilter(lastDayIncome) }}
+        </h2>
+      </div>
+
+      <div class="col">
+        <p class="inc-label ta-end">Meu patrimônio</p>
+        <h2 class="ta-end">
+          <span class="medium">U$</span> {{ lastTotalBalance ? moneyFilter(lastTotalBalance) : '--' }}
+        </h2>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,22 @@
+<nb-card
+  accent="info"
+  class="card-chamados abertos"
+  [nbSpinner]="loading"
+  nbSpinnerStatus="primary"
+>
+  <nb-card-header>
+    <div class="row">
+      <div class="col-10">
+        <div class="titulo">
+          <nb-icon status="info" icon="file-text-outline"></nb-icon>Tarefas
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="numero">{{ size }}</div>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <ng-content></ng-content>
+  </nb-card-body>
+</nb-card>

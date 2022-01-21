@@ -1,0 +1,147 @@
+@import './themes';
+
+@mixin nb-overrides() {
+  nb-card {
+    margin-bottom: 1.4rem;
+  }
+
+  nb-card-header {
+    padding: 1rem 1.5rem;
+  }
+
+  nb-accordion {
+    box-shadow: none;
+  }
+
+  nb-select.size-medium button {
+    padding: 0.4375rem 2.2rem 0.4375rem 1.125rem !important;
+
+    nb-icon {
+      right: 0.41rem !important;
+    }
+  }
+
+  nb-user .user-picture {
+    border: none;
+  }
+
+  nb-dialog-container {
+    width: 100%;
+    max-width: 100%;
+    min-width: 80vh;
+  }
+
+  @media (max-width: 768px) {
+    nb-dialog-container {
+      min-width: 100%;
+    }
+  }
+
+  .model-full {
+    width: 90% !important;
+
+    .cdk-visually-hidden {
+      width: 89% !important;
+      height: 95% !important;
+    }
+
+    nb-dialog-container {
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+  }
+
+  .model-full-dialog {
+    width: 100% !important;  
+    justify-content: center !important;
+  }
+
+  .model-medium-dialog {
+    width: 50% !important;
+    justify-content: center !important;
+  }
+
+  [nbInput].status-basic:disabled,
+  button.select-button[disabled] {
+    color: nb-theme(color-basic-400) !important;
+    &.btn-default {
+      color: nb-theme(color-info-500) !important;
+    }
+    &.btn-gray {
+      color: nb-theme(color-info-500) !important;
+    }
+
+    &.btn-success {
+      color: nb-theme(color-success-500) !important;
+    }
+
+    &.btn-danger {
+      color: nb-theme(color-danger-500);
+    }
+
+    &.btn-warning {
+      color: nb-theme(color-warning-500) !important;
+    }
+  }
+
+  .mat-table,
+  .mat-paginator {
+    background: none;
+  }
+
+  .mat-paginator-container,
+  .mat-header-cell {
+    background-color: #292929;
+  }
+
+  .mat-cell,
+  .mat-form-field-appearance-legacy .mat-form-field-label {
+    color: white;
+    background-color: #292929;
+  }
+
+
+  .mat-table {
+    font-family: Rubik, Open sans-serif;
+  }
+
+  * {
+    font-family: Rubik, Open sans-serif;
+  }
+  nb-window {
+    .buttons {
+      button {
+        color: nb-theme(color-primary-500) !important;
+      }
+    }
+  }
+
+  .btn-default {
+    color: nb-theme(color-info-500) !important;
+  }
+  .btn-gray {
+    color: nb-theme(color-info-500) !important;
+  }
+
+  .btn-success {
+    color: nb-theme(color-success-500) !important;
+  }
+
+  .btn-danger {
+    color: nb-theme(color-danger-500);
+  }
+
+  .btn-warning {
+    color: nb-theme(color-warning-500) !important;
+  }
+  .body,
+  .timelineBody {
+    white-space: break-spaces;
+  }
+  .tabset {
+    flex-wrap: wrap;
+  }
+
+}

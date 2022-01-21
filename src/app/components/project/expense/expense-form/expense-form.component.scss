@@ -1,0 +1,13 @@
+@import "../../../../@theme/styles/themes.scss";
+
+@import "~bootstrap/scss/mixins";
+
+.model-full-dialog {
+  justify-content: center !important;
+}
+
+.model-dialog-custom {
+  margin: 0 auto;
+  width: 50% !important;
+}
+

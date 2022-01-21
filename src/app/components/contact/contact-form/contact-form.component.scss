@@ -1,0 +1,63 @@
+@import "../../../@theme/styles/themes.scss";
+@import "~bootstrap/scss/mixins";
+
+@include nb-install-component() {
+
+  .col-form-label {
+    display: flex;
+    align-items: center;
+  }
+
+
+  input,
+  nb-select,
+  ng-toggle,
+  span {
+    margin: 10px 0;
+  }
+
+  nb-select {
+    width: 100%;
+  }
+
+  input::placeholder {
+    opacity: 40%;
+  }
+
+  .divider {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    opacity: 10%;
+  }
+
+  hr {
+    border-color: #000;
+  }
+
+  textarea::placeholder {
+    opacity: 40%;
+  }
+
+  input[type="date"] {
+    opacity: 40%;
+  }
+
+  select::placeholder {
+    opacity: 40%;
+  }
+
+  textarea {
+    overflow: hidden;
+  }
+
+  .select {
+
+    &.placeholder {
+      color: green;
+    }
+  }
+
+
+
+
+}

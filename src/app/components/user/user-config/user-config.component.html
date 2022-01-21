@@ -1,0 +1,25 @@
+<div>
+  <div class="first-row">
+    <div class="row justify-content-center">
+      <div class="col-11 user-info-holder">
+        <ngx-user-table (refreshData)="getData()" [dataSource]="dataSourceAll"></ngx-user-table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <nb-actions *ngIf="!activeForm" size="small" class="ml-auto">
+        <nb-action nbTooltip="Add" (click)="startForm()">
+          <nb-icon icon="plus-outline" class="fr"></nb-icon>
+        </nb-action>
+      </nb-actions>
+    </div>
+  </div>
+
+  <div class="row mt-20 justify-content-center">
+    <div class="col-11" *ngIf="activeForm">
+      <ngx-user-form (activeForm)="manageForm($event)"></ngx-user-form>
+    </div>
+  </div>
+</div>

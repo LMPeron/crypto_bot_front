@@ -1,0 +1,85 @@
+<div class="model-full-dialog">
+  <nb-card class="dialog-card model-dialog-custom">
+    <nb-card-header>
+      {{ title }}
+      <nb-actions size="small" class="inline">
+        <nb-action class="fr">
+          <nb-icon icon="close-outline" status="primary" (click)="close()"> </nb-icon>
+        </nb-action>
+      </nb-actions>
+    </nb-card-header>
+
+    <nb-card-body>
+      <!--  FORM TASKS   -->
+
+      <div cdkDropListGroup>
+        <div class="example-container">
+          <h2>To do</h2>
+
+          <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of todo" cdkDrag>{{ item }}</div>
+          </div>
+        </div>
+
+        <div class="example-container">
+          <h2>Done</h2>
+
+          <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of done" cdkDrag>{{ item }}</div>
+          </div>
+        </div>
+      </div>
+
+      <form [formGroup]="sprintForm">
+        <!--    FORM STARTDATE    -->
+
+        <div class="form-group row justify-content-center">
+          <div class="col-sm-9 col-lg-5">
+            <div class="row mb10">
+              <div class="col-12">
+                <label for="inputStartDate" class="label">Data Início</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <input
+                  type="date"
+                  nbInput
+                  fullWidth
+                  #inputStartDate
+                  name="inputStartDate"
+                  formControlName="startDate"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!--    FORM FINISHDATE    -->
+
+          <div class="col-sm-9 col-lg-5">
+            <div class="row mb10">
+              <div class="col-12">
+                <label for="inputStartDate" class="label">Data Término</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <input type="date" nbInput fullWidth #inputStartDate name="inputEndDate" formControlName="endDate" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-10">
+            <div class="row justify-content-end">
+              <button (click)="onSubmit()" nbButton outline status="success" size="small">Salvar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</div>

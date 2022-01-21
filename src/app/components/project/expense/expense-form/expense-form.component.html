@@ -1,0 +1,148 @@
+<div class="model-full-dialog">
+  <nb-card class="dialog-card model-dialog-custom">
+    <nb-card-header>
+      {{ title }}
+      <nb-actions size="small" class="inline">
+        <nb-action class="fr">
+          <nb-icon icon="close-outline" status="primary" (click)="close()"> </nb-icon>
+        </nb-action>
+      </nb-actions>
+    </nb-card-header>
+
+    <nb-card-body>
+      <form [formGroup]="expenseForm">
+        <!--    FORM DATA    -->
+
+        <div class="form-group row justify-content-center">
+          <div class="col-sm-9 col-lg-5">
+            <div class="row mb10">
+              <div class="col-12">
+                <label for="inputDate" class="label">Data</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <input type="date" nbInput fullWidth #inputDate name="inputDate" formControlName="date" />
+              </div>
+            </div>
+          </div>
+
+          <!--    FORM VALOR    -->
+
+          <div class="col-sm-9 col-lg-5">
+            <div class="row mb10">
+              <div class="col-12">
+                <label for="inputValue" class="label">Valor (R$)</label>
+              </div>
+            </div>
+
+            <input
+              type="text"
+              #inputValue
+              nbInput
+              fullWidth
+              currencyMask
+              [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }"
+              placeholder="R$"
+              formControlName="value"
+              name="inputValue"
+            />
+          </div>
+        </div>
+
+        <!--    FORM QUANTITY    -->
+
+        <div class="form-group row justify-content-center">
+          <div class="col-sm-9 col-lg-5">
+            <div class="row mb10">
+              <div class="col-12">
+                <label for="inputQuantity" class="label">Quantidade</label>
+              </div>
+            </div>
+
+            <input
+              type="number"
+              nbInput
+              #inputQuantity
+              fullWidth
+              name="inputQuantity"
+              formControlName="quantity"
+              [status]="f.quantity.dirty && f.quantity.invalid ? 'danger' : 'basic'"
+            />
+          </div>
+
+          <!--    FORM TYPE    -->
+
+          <div class="col-sm-9 col-lg-5">
+            <div class="row mb10">
+              <div class="col-12">
+                <label for="inputType" class="label">Tipo</label>
+              </div>
+            </div>
+
+            <nb-select name="inputType" fullWidth formControlName="expenseType">
+              <nb-option *ngFor="let expenseType of expenseTypeList" [value]="expenseType">
+                {{ expenseType.name }}
+              </nb-option>
+            </nb-select>
+          </div>
+        </div>
+
+        <!--    FORM TYPEOTHER    -->
+
+        <div class="form-group row justify-content-center" *ngIf="f.expenseType.value === 'et0'">
+          <div class="col-sm-9 col-lg-10">
+            <div class="row mb10">
+              <div class="col-12">
+                <label for="inputTypeOther" class="label">Outro</label>
+              </div>
+            </div>
+
+            <input
+              type="text"
+              nbInput
+              #inputTypeOther
+              fullWidth
+              name="inputTypeOther"
+              formControlName="typeOther"
+              autofocus
+            />
+          </div>
+        </div>
+
+        <!--    FORM DESCRIÇÃO    -->
+
+        <div class="form-group row justify-content-center">
+          <div class="col-sm-9 col-lg-10">
+            <div class="row mb10">
+              <div class="col-12">
+                <label for="inputDescription" class="label">Descrição</label>
+              </div>
+            </div>
+
+            <textarea
+              type="text"
+              nbInput
+              placeholder="Insira a descrição da Despesa."
+              name="inputDescription"
+              fullWidth
+              formControlName="description"
+              #inputDescription
+              rows="8"
+              maxlength="1980"
+              [status]="f.description.dirty && f.description.invalid ? 'danger' : 'basic'"
+            ></textarea>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-10">
+            <div class="row justify-content-end">
+              <button (click)="addExpense()" nbButton outline status="success" size="small">Salvar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</div>

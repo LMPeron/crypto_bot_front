@@ -1,0 +1,164 @@
+@import "../@theme/styles/themes";
+
+@include nb-install-component() {
+  ::ng-deep router-outlet+* {
+    display: block;
+    animation: fade 1s;
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .pointer {
+      cursor: pointer;
+    }
+
+    nb-menu .menu-item a {
+      position: relative;
+    }
+
+    nb-menu {
+      background-color: #000 !important;
+    }
+  }
+
+
+  ::ng-deep {
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table:not(.branch-table) {
+      margin-top: 15px;
+    }
+
+    th {
+      border-bottom: 1px solid #000;
+      padding-bottom: 12px;
+      font-weight: 500;
+      font-style: normal;
+      font-size: 1rem;
+      color: nb-theme(color-basic-300);
+
+      span {
+        display: block;
+      }
+    }
+
+    td {
+      overflow-wrap: break-word;
+    }
+
+    .cdk-overlay-container {
+      z-index: 1041;
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+    }
+
+    td.cdk-cell {
+      border: none;
+
+      span {
+        display: block;
+      }
+    }
+
+    tr.cdk-row {
+      border-bottom: 1px solid nb-theme(color-basic-1000);
+    }
+
+    .cdk-row:hover:not(.detail-row) {
+      background-color: nb-theme(color-basic-700);
+      cursor: pointer;
+    }
+
+    mat-paginator button {
+      background: none;
+      color: nb-theme(color-primary-400);
+    }
+
+    .mat-paginator-container {
+      color: nb-theme(color-basic-300);
+    }
+
+    .mat-paginator-container button:disabled {
+      color: nb-theme(color-basic-500);
+    }
+
+    .titulo {
+      color: nb-theme(color-basic-400);
+      font-size: 1.4rem;
+      line-height: 2rem;
+
+      nb-icon {
+        font-size: 1.8rem;
+      }
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .chip-list {
+      width: 100%;
+    }
+
+    .search-bar {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .col-85p {
+      width: 85%;
+    }
+
+    .col-15p {
+      width: 15%;
+    }
+
+    .padding-small {
+      padding: 0.5rem;
+    }
+
+    .search-input {
+      background: transparent;
+      border: none;
+    }
+
+    .filter-icon {
+      padding: 0 !important;
+      margin-right: 10px;
+      float: right;
+
+      nb-icon {
+        width: 2.1rem;
+        height: 2.1rem;
+      }
+    }
+
+    .search-input {
+      background-color: nb-theme(color-basic-700);
+    }
+
+    .smallTable {
+      nb-card {
+        background-color: nb-theme(color-basic-700);
+      }
+    }
+  }
+}

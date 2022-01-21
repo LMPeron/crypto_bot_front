@@ -1,0 +1,159 @@
+@import "../../@theme/styles/themes.scss";
+@import "~bootstrap/scss/mixins";
+
+body {
+  font-family: Barlow, Bold;
+  overflow: hidden;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+h1 {
+  font-weight: 800;
+}
+
+.user-info-holder {
+  margin-top: 30px;
+  padding-left: 10%;
+}
+
+.first-row {
+  background-image: url("../../../assets/icons/pattern.svg");
+}
+
+.second-row {
+  @media (max-width: 768px) {
+    margin-top: 20%;
+  }
+
+  margin-top: 5%;
+
+  .performance-avg {
+    padding-top: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 2%;
+    margin-left: 5%;
+    display: inline-block;
+    border-radius: 10px;
+    background-color: nb-theme(color-basic-500);
+
+    p {
+      font-weight: 500;
+    }
+
+    p.success {
+      color: nb-theme(color-success-100);
+    }
+
+    p.danger {
+      color: nb-theme(color-danger-100);
+    }
+  }
+}
+
+.row {
+  justify-content: center;
+}
+
+.inactive-coin {
+  opacity: 40%;
+}
+
+.coin-header {
+  text-align: center;
+  cursor: pointer;
+
+}
+
+.playing {
+  opacity: 40%;
+  cursor: default !important;
+}
+
+.paused {
+  opacity: 100%;
+}
+
+
+.as-center {
+  align-self: center;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.buying-coin {
+  background-color: green;
+}
+
+.selling-coin {
+  background-color: red;
+}
+
+.setup-accordion {
+  background-color: #353535;
+  padding: 0;
+}
+
+.action-header {
+  nb-icon {
+    font-size: 300%;
+    font-weight: 200;
+    cursor: pointer;
+  }
+
+  margin-bottom: 2%;
+}
+
+.setup-info {
+  background-color: #4e4e4e;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.button {
+  width: 30%;
+}
+
+.add-setup {
+  cursor: pointer;
+  margin-top: 10%;
+  margin-left: 5%;
+}
+
+.action-row {
+  width: 99%;
+  justify-content: start;
+  padding-top: 5%;
+}
+
+.wallet-holder {
+  margin-bottom: -60px;
+}
+
+ngx-wallet-info {
+  margin-bottom: -20%;
+}
+
+::ng-deep {
+  nb-card-body {
+    padding: 0;
+  }
+
+  nb-accordion-item {
+    margin-bottom: 10px;
+  }
+
+  .item-body {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  button {
+    width: 50%;
+  }
+}

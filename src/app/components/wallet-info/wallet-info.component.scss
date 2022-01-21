@@ -1,0 +1,40 @@
+@import "../../@theme/styles/themes.scss";
+@import "~bootstrap/scss/mixins";
+
+
+.inc-label {
+  font-size: smaller;
+  margin-bottom: 0;
+  color: nb-theme(color-basic-200);
+}
+
+@media (max-width: 300px) {
+  .ta-end {
+    text-align: start;
+  }
+}
+
+h2 {
+  font-weight: bold;
+}
+
+h2.income-success {
+  color: nb-theme(color-success-500);
+}
+
+h2.income-danger {
+  color: nb-theme(color-danger-500);
+}
+
+::ng-deep {
+  nb-card-body {
+    border: 0;
+    overflow: hidden;
+
+  }
+
+  nb-card {
+    border: 0;
+    border-radius: 5px;
+  }
+}

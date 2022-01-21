@@ -1,0 +1,108 @@
+<nb-card class="dialog-card model-full-dialog">
+  <nb-card-header>
+    {{ title }}
+    <nb-actions size="small" class="inline">
+      <nb-action class="fr">
+        <nb-icon icon="close-outline" status="primary" (click)="close()"> </nb-icon>
+      </nb-action>
+    </nb-actions>
+  </nb-card-header>
+  <nb-card-body class="novoChamadoBack">
+    <div class="col-12 col-lg-6">
+      <nb-alert status="danger" *ngIf="error">
+        {{ listError.msg }}
+      </nb-alert>
+
+      <form [formGroup]="taskForm">
+        <div class="form-group row">
+          <div class="col-sm-12 col-md-12">
+            <div class="row">
+              <label for="inputSummary" class="col-12 col-form-label"> Título </label>
+
+              <div class="col-12 m10">
+                <input
+                  type="text"
+                  nbInput
+                  fullWidth
+                  [status]="submitted && f.title.invalid ? 'danger' : 'basic'"
+                  placeholder="Insira o título da nova tarefa"
+                  #inputSumarry
+                  formControlName="title"
+                  name="inputSummary"
+                  class="form-control"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-12 col-md-12">
+            <div class="row">
+              <label for="inputDescription" class="col-12 col-form-label"> Descrição </label>
+              <div class="col-12 m10">
+                <textarea
+                  type="text"
+                  nbInput
+                  fullWidth
+                  formControlName="description"
+                  placeholder="Insira as informações da nova tarefa"
+                  #inputDescription
+                  rows="5"
+                  [status]="submitted && f.description.invalid ? 'danger' : 'basic'"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-6 col-sm-12">
+            <div class="row">
+              <label for="owner" class="col-12 col-form-label"> Executante </label>
+
+              <div class="col-12">
+                <nb-select size="small" name="owner" formControlName="owner" fullWidth *ngIf="usersInvolved.length > 0">
+                  <nb-option [value]="null" disabled> -- </nb-option>
+
+                  <nb-option *ngFor="let user of usersInvolved" [value]="user.id">
+                    {{ user.name }}
+                  </nb-option>
+                </nb-select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12">
+          <table cdk-table [dataSource]="dataSourceTimesheet">
+            <!-- Position Column -->
+            <ng-container cdkColumnDef="userName">
+              <th cdk-header-cell *cdkHeaderCellDef>userName</th>
+              <td cdk-cell *cdkCellDef="let element">{{ element.user?.name }}</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container cdkColumnDef="startHour">
+              <th cdk-header-cell *cdkHeaderCellDef>startHour</th>
+              <td cdk-cell *cdkCellDef="let timesheetRow">{{ timesheetRow.startHour | date: 'dd/LL/yyyy - HH:mm' }}</td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container cdkColumnDef="endHour">
+              <th cdk-header-cell *cdkHeaderCellDef>endHour</th>
+              <td cdk-cell *cdkCellDef="let timesheetRow">{{ timesheetRow.endHour | date: 'dd/LL/yyyy - HH:mm' }}</td>
+            </ng-container>
+
+            <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+            <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer> </nb-card-footer>
+</nb-card>

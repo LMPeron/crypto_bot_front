@@ -1,0 +1,29 @@
+@import "../../../@theme/styles/themes.scss";
+@import "~bootstrap/scss/mixins";
+
+body {
+  font-family: Barlow, Bold;
+  overflow: hidden;
+}
+
+.first-row {
+  background-image: url("../../../../assets/icons/pattern.svg");
+  height: 200%;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+::ng-deep {
+  nb-actions {
+    justify-content: end;
+    margin-top: 2%;
+    nb-icon {
+      cursor: pointer;
+      color: nb-theme(color-success-100);
+    }
+  }
+
+
+}

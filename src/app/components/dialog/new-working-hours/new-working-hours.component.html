@@ -1,0 +1,23 @@
+<nb-card class="sizeDialog">
+  <nb-card-header>
+    <div class="row">
+      <div class="col-12">
+        {{ title }}
+        <nb-actions size="small" class="inline">
+          <nb-action class="ml-auto fr">
+            <nb-icon icon="close-outline" status="primary" (click)="close()">
+            </nb-icon>
+          </nb-action>
+        </nb-actions>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-card-body>
+      <ngx-new-timesheet-form
+        [task]="task"
+        (newEvent)="newEvent($event)"
+      ></ngx-new-timesheet-form>
+    </nb-card-body>
+  </nb-card-body>
+</nb-card>

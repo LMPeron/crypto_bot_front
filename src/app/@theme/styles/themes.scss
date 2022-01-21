@@ -1,0 +1,94 @@
+// @nebular theming framework
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/dark';
+
+$nb-enable-css-custom-properties: true;
+
+$nb-themes: nb-register-theme((font-family-primary: unquote('Rubik, Open Sans'),
+    color-basic-100: white,
+    color-basic-200: #BD7ED1,
+    color-basic-300: #BA55DA,
+    color-basic-400: #5A3673,
+    color-basic-500: #5A3673,
+    color-basic-600: #5A3673,
+    color-basic-700: #5A3673,
+    color-basic-800: #5A3673,
+    color-basic-900: #5A3673,
+    color-basic-1000: #230e3d,
+    color-basic-1100: #000,
+    color-primary-100: #fff7cc,
+    color-primary-200: #ffed99,
+    color-primary-300: #ffe166,
+    color-primary-400: #ffd43f,
+    color-primary-500: #ffc000,
+    color-primary-600: #db9f00,
+    color-primary-700: #b78000,
+    color-primary-800: #936400,
+    color-primary-900: #7a4f00,
+    color-primary-transparent-100: rgba(0, 0, 0, 0.08),
+    color-primary-transparent-200: rgba(0, 0, 0, 0.16),
+    color-primary-transparent-300: rgba(0, 0, 0, 0.24),
+    color-primary-transparent-400: rgba(0, 0, 0, 0.32),
+    color-primary-transparent-500: rgba(0, 0, 0, 0.4),
+    color-primary-transparent-600: rgba(0, 0, 0, 0.48),
+    color-info-100: #ccf5ff,
+    color-info-200: #99e6ff,
+    color-info-300: #66d0ff,
+    color-info-400: #3fbaff,
+    color-info-500: #0095ff,
+    color-info-600: #0073db,
+    color-info-700: #0056b7,
+    color-info-800: #003c93,
+    color-info-900: #002b7a,
+    color-info-transparent-100: rgba(0, 149, 255, 0.08),
+    color-info-transparent-200: rgba(0, 149, 255, 0.16),
+    color-info-transparent-300: rgba(0, 149, 255, 0.24),
+    color-info-transparent-400: rgba(0, 149, 255, 0.32),
+    color-info-transparent-500: rgba(0, 149, 255, 0.4),
+    color-info-transparent-600: rgba(0, 149, 255, 0.48),
+    color-success-100: #6AFC60,
+    color-success-500: #6AFC60,
+    color-danger-100: #ffdcd8,
+    color-danger-200: #ffb3b1,
+    color-danger-300: #ff8a93,
+    color-danger-400: #ff6d86,
+    color-danger-500: #FA3C3C,
+    color-danger-600: #db2c6c,
+    color-danger-700: #b71e65,
+    color-danger-800: #93135b,
+    color-danger-900: #7a0b54,
+    color-danger-transparent-100: rgba(255, 61, 113, 0.08),
+    color-danger-transparent-200: rgba(255, 61, 113, 0.16),
+    color-danger-transparent-300: rgba(255, 61, 113, 0.24),
+    color-danger-transparent-400: rgba(255, 61, 113, 0.32),
+    color-danger-transparent-500: rgba(255, 61, 113, 0.4),
+    color-danger-transparent-600: rgba(255, 61, 113, 0.48),
+    menu-group-text-color: #8a8a8a,
+    menu-text-color: #8a8a8a,
+    menu-item-icon-color: #8a8a8a,
+    shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.36),
+    text-button-font-weight: 500,
+    text-subtitle-font-weight: 500,
+    text-subtitle-2-font-weight: 500,
+    text-caption-2-font-weight: 500,
+    text-hint-color: color-basic-100,
+    sidebar-menu-item-highlight-color: color-primary-500,
+    text-control-color: color-basic-1000,
+    border-basic-color-3: color-basic-1000,
+  ),
+  lb2Dark,
+  dark);
+
+ng2-smart-table table {
+  border-radius: 5px;
+
+  tr th.ng2-smart-sort-link a,
+  tr.ng2-smart-titles th a {
+    color: nb-theme(color-primary-500) !important;
+  }
+
+  tr th {
+    border: none;
+    color: nb-theme(color-primary-500);
+  }
+}

@@ -1,0 +1,57 @@
+@import '../../@theme/styles/themes.scss';
+@import '~bootstrap/scss/mixins';
+
+@include nb-install-component() {
+  ::ng-deep {
+    .ml-10 {
+      margin-left: 10px;
+    }
+
+    .back-button {
+      padding: 0 !important;
+
+      nb-icon {
+        height: 2rem;
+        width: 2rem;
+      }
+    }
+
+    .titulo {
+      color: nb-theme(color-basic-400);
+      font-size: 1.4rem;
+      line-height: 2rem;
+      font-weight: 500;
+    }
+    small {
+      font-size: 0.9rem;
+      line-height: 2rem;
+      font-weight: 300;
+      color: nb-theme(color-basic-400);
+      position: absolute;
+      left: 45px;
+      top: 22px;
+      cursor: pointer;
+    }
+
+    .buttons-end {
+      margin-left: auto;
+    }
+  }
+
+  .dataName {
+    color: nb-theme(color-basic-400);
+    display: block;
+  }
+
+  .divider {
+    border-bottom: 1px solid nb-theme(border-basic-color-3);
+  }
+
+  .padding {
+    padding: 15px 0;
+    text-align: center;
+  }
+  .actions {
+    margin-left: auto;
+  }
+}

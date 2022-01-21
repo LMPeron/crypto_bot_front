@@ -1,0 +1,37 @@
+@import "../../../@theme/styles/themes.scss";
+@import "~bootstrap/scss/mixins";
+
+@include nb-install-component() {
+  .col-form-label {
+    display: flex;
+    align-items: center;
+  }
+
+  input,
+  nb-select,
+  span {
+    margin: 10px 0;
+  }
+
+  nb-select {
+    width: 100%;
+  }
+
+  .m10 {
+    margin: 10px 0;
+  }
+
+  .flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  textarea {
+    overflow: hidden;
+  }
+
+  .actions-bar {
+    display: flow-root;
+    margin: 2rem 1rem;
+  }
+}

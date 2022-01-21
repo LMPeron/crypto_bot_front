@@ -1,0 +1,35 @@
+<nb-card class="dialog-card">
+  <nb-card-header>
+    Inativar Despesa
+    <nb-actions size="small" class="inline">
+      <nb-action class="fr">
+        <nb-icon icon="close-outline" status="primary" (click)="close()"> </nb-icon>
+      </nb-action>
+    </nb-actions>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="col-12">
+      <h5 status="primary">Realmente deseja desativar Despesa?</h5>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <button nbButton outline status="primary" class="fr" [routerLink]="['/projetos/classification/novo']">
+          DESATIVAR
+        </button>
+      </div>
+      <div class="col-6">
+        <button
+          nbButton
+          outline
+          status="success"
+          [routerLink]="'/projetos/' + project.id"
+          class="fl"
+          (click)="dismiss()"
+        >
+          VER CLASSIFICAÇÃO
+        </button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

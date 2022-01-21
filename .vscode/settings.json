@@ -1,0 +1,10 @@
+{
+    "peacock.color": "#dd0531",
+    "compile-hero.disable-compile-files-on-did-save-code": false,
+    "files.watcherExclude": {
+        "**/dist/**": true
+    },
+    "files.exclude": {
+        "**/dist": true
+    }
+}

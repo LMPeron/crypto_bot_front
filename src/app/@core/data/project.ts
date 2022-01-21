@@ -1,0 +1,55 @@
+import { IWorkspace } from './workspace';
+import { IPriority } from './priority';
+import { IContact } from './contact';
+import { IClassification } from './classification';
+import { IExpense } from './expense';
+import { IComment } from './comment';
+import { ICompany } from './company';
+import { IProjectStatus } from './projectStatus';
+import { IRules } from './rules';
+import { IUserMini } from './users';
+
+export interface IProject {
+  attachmentList?: any[];
+  id?: string;
+  name?: string;
+  description?: string;
+  createdBy?: IUserMini;
+  requestedBy?: string;
+  owner?: IUserMini;
+  status?: IProjectStatus;
+  creationDate?: Date;
+  dueDate?: Date;
+  dueStartDate?: Date;
+  reopenDate?: Date;
+  startDate?: Date;
+  finishDate?: Date;
+  realAnswerDate?: Date;
+  answerDate?: Date;
+  rules?: IRules;
+  classification?: IClassification;
+  priority?: IPriority;
+  stakeholders?: IContact[];
+  justification?: string;
+  premise?: string;
+  restrictions?: string;
+  acceptanceCriteria?: string;
+  risks?: string;
+  estimatedRevenue?: number;
+  realRevenue?: number;
+  estimatedSpend?: number;
+  realSpend?: number;
+  estimatedEffort?: number;
+  commentList?: IComment[];
+  expenseList?: IExpense[];
+  isRegisteredClient?: boolean;
+  company?: ICompany;
+  companyClient?: ICompany;
+  clientName?: string;
+  number: number;
+  usersInvolved?: IUserMini[];
+  _rev?: any;
+  totalHours?: number;
+  workspace?: IWorkspace;
+
+}

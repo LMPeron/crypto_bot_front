@@ -1,0 +1,155 @@
+<div class="row">
+  <div class="col-12">
+    <nb-card>
+      <nb-card-header
+        ><nb-alert outline="danger" closable *ngIf="error">
+          <ng-container>
+            <li class="alert-message">
+              {{ listError.msg }}
+            </li>
+            <li *ngFor="let message of listError.listFieldError" class="alert-message">
+              {{ message.message }}
+            </li>
+          </ng-container>
+        </nb-alert></nb-card-header
+      >
+      <nb-card-body [nbSpinner]="loadingProject" nbSpinnerStatus="primary">
+        <div class="col-12">
+          <div class="row">
+            
+            <button nbButton ghost class="back-button">
+              <nb-icon icon="arrow-circle-left-outline"></nb-icon>
+            </button>
+
+            <div class="titulo ml-10">Tarefa #{{ projectTask.number }}</div>
+
+            <nb-actions size="medium" class="actions" *ngIf="!loadingProject">
+              <nb-action *ngIf="projectTask.status.id !== 's3' && projectTask.status.id !== 's5'">
+                <nb-icon
+                  icon="message-square-outline"
+                  class="fr"
+                  (click)="scroll(comment)"
+                  nbTooltip="Adicionar um comentário "
+                  nbTooltipPlacement="top"
+                ></nb-icon>
+              </nb-action>
+              <nb-action *ngIf="canNewTask">
+                <button nbButton outline status="basic" size="small" class="fr" (click)="scroll(tarefas)">
+                  Tarefas
+                </button>
+              </nb-action>
+
+              <!--
+              <nb-action disabled *ngIf="canCancel">
+                <button nbButton outline size="small" class="fr" (click)="cancelDialog()">Cancelar</button>
+              </nb-action> -->
+              <nb-action>
+                <button
+                  nbButton
+                  outline
+                  status="danger"
+                  size="small"
+                  class="fr"
+                  (click)="closeProjectTask($event, projectTask.id, projectTask._rev)"
+                >
+                  Encerrar
+                </button>
+              </nb-action>
+            </nb-actions>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <!--
+  <div class="col-md-12 col-xxl-2 col-lg-3">
+    <nb-card>
+      <nb-card-header>Datas</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-12">
+            <div class="row">
+              <div class="col-6 col-lg-12">
+                <div class="padding">
+                  <span class="dataName">Data de criação </span>
+                  <span>
+                    {{ project.creationDate | date: 'dd/LL/yyyy | HH:mm' }}
+                  </span>
+                </div>
+              </div>
+              <div class="col-6 col-lg-12">
+                <div class="padding">
+                  <span class="dataName">Data de resposta </span>
+                  <span *ngIf="!project.realAnswerDate"> --/--/---- --:-- </span>
+                  <span>
+                    {{ project.realAnswerDate | date: 'dd/LL/yyyy | HH:mm' }}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider padding"></div>
+          </div>
+        </div>
+      </nb-card-body>
+      <nb-card-body> </nb-card-body>
+    </nb-card>
+  </div> -->
+  <div class="col-md-12 col-xxl-10 col-lg-9">
+    <nb-card>
+      <nb-card-header>
+        <div class="col-12">
+          <div class="row">
+            Dados projeto
+            <!-- <nb-actions size="small" class="actions">
+              <nb-action [icon]="editIconConfig" (click)="openWindow()"></nb-action>
+            </nb-actions> -->
+          </div>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        Nome : {{ projectTask.title }}
+
+        Descrição : {{ projectTask.description }}
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-xl-12 col-12" #tarefas>
+
+    <div #comment> 
+      <ngx-comment-task
+        [projectTask]="projectTask"
+        (newCommentEvent)="reciverEvent($event)"
+      ></ngx-comment-task>
+    </div>
+    
+  </div>
+
+  <div class="col-xl-6 col-12">
+    <nb-card>
+      <nb-card-header>Anexos</nb-card-header>
+      <nb-card-body>
+        <!-- <ngx-upload (uploadEvent)="reciverEvent($event)" [project]="project"></ngx-upload> -->
+      </nb-card-body>
+    </nb-card>
+
+    <!-- <ngx-card-project-deslocamento
+      *ngIf="(projectViewRules | rulesFilter: 'deslocamento') && canAddNewDisplacement"
+      [project]="project"
+      (newEvent)="reciverEvent($event)"
+    ></ngx-card-project-deslocamento> -->
+  </div>
+  <div class="col-xl-6 col-12"></div>
+  <!-- <div class="col-xl-12 col-12">
+    <nb-card *ngIf="showDisplacementsTable && (projectViewRules | rulesFilter: 'deslocamento')">
+      <nb-card-header>Tabela de deslocamentos</nb-card-header>
+      <nb-card-body>
+        <ngx-displacement-table [event]="newDisplacementEvent"></ngx-displacement-table>
+      </nb-card-body>
+    </nb-card>
+  </div> -->
+
+  <!-- <ng-template #classifyTemplate let-data>
+  <ngx-classify-project-form [project]="data.project"></ngx-classify-project-form>
+</ng-template> -->
+</div>

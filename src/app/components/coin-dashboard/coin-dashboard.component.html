@@ -1,0 +1,125 @@
+<div class="first-row">
+  <div class="row">
+    <div class="col-12 user-info-holder">
+      <p>Analytics</p>
+      <h1>Overview</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-10 wallet-holder">
+      <ngx-analytics-dashboard [profit]="profit"></ngx-analytics-dashboard>
+    </div>
+  </div>
+</div>
+
+<div class="second-row">
+  <div class="row">
+    <div class="col-10">
+      <!-- <span>Desempenho médio</span>
+      <div class="performance-avg"><p>20%</p></div> -->
+      <ngx-income-chart *ngIf="!loading" [data]="profitByDay"></ngx-income-chart>
+    </div>
+  </div>
+</div>
+
+<ngx-trade-list *ngIf="tradeList" [tradeList]="tradeList"></ngx-trade-list>
+
+<!-- <div class="row jc-center action-header">
+<span>
+    <nb-icon
+    (click)="start()"
+      [class]="this.playing ? 'playing' : 'paused'"
+      nbPrefix
+      status="success"
+      icon="play-circle-outline"
+    ></nb-icon>
+  </span>
+  <span>
+    <nb-icon
+    (click)="stop()"
+      [class]="this.playing ? 'paused' : 'playing'"
+      nbPrefix
+      status="primary"
+      icon="pause-circle-outline"
+    ></nb-icon>
+  </span>
+</div> -->
+
+<!-- <div class="row">
+  <ng-container *ngFor="let coin of coinList">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xxl-3">
+      <nb-card
+        [status]="coin.active === 0 ? '' : coin.status === 0 ? 'success' : 'danger'"
+        [class]="coin.active === 1 ? 'active-coin' : 'inactive-coin'"
+      >
+        <nb-card-header (click)="changeSelectedCoin(coin.id)" class="coin-header">
+          <div class="row">
+            <div class="col-6 as-center">
+              {{ coin.symbol }}
+            </div>
+            <div class="col-6 as-center">
+              <nb-toggle (click)="changeCoinActive(coin)" #inputActive [(ngModel)]="coin.active"></nb-toggle>
+            </div>
+          </div>
+        </nb-card-header>
+        <nb-card-body>
+          <nb-accordion>
+            <nb-accordion-item [collapsed]="!(coin.id === selectedCoin && coin.active === 1)" class="setup-accordion">
+              <nb-accordion-item-body>
+                <ng-container *ngFor="let s of coin.setup_list">
+                  <nb-accordion>
+                    <nb-accordion-item class="setup-info">
+                      <nb-accordion-item-header (click)="changeSelectedSetup(s)">
+                        Setup {{ s.id }}
+                      </nb-accordion-item-header>
+                      <nb-accordion-item-body>
+                        <label for="">Cash</label>
+                        <input [(ngModel)]="cash" type="number" name="inputCash" nbInput #inputQuantity fullWidth />
+
+                        <label for="">RSI Buy</label>
+                        <input [(ngModel)]="rsi_buy" type="number" name="inputCash" nbInput #inputQuantity fullWidth />
+
+                        <label for="">RSI Sell</label>
+                        <input [(ngModel)]="rsi_sell" type="number" name="inputCash" nbInput #inputQuantity fullWidth />
+
+                        <label for="">Stop Limit</label>
+                        <input
+                          [(ngModel)]="stop_limit"
+                          type="number"
+                          name="inputCash"
+                          nbInput
+                          #inputQuantity
+                          fullWidth
+                        />
+
+                        <div class="row action-row">
+                          <div class="col-12 col-sm-12 col-md-6">
+                            <nb-card>
+                              <nb-card-body>
+                                <button (click)="saveSetup(s.id)" nbButton status="success" fullWidth>Salvar</button>
+                              </nb-card-body>
+                            </nb-card>
+                          </div>
+
+                          <div class="col-12 col-sm-12 col-md-6">
+                            <nb-card>
+                              <nb-card-body>
+                                <button (click)="deleteSetup(s.id)" nbButton status="danger" fullWidth>Excluir</button>
+                              </nb-card-body>
+                            </nb-card>
+                          </div>
+                        </div>
+                      </nb-accordion-item-body>
+                    </nb-accordion-item>
+                  </nb-accordion>
+                </ng-container>
+                <nb-icon class="add-setup" (click)="addSetup(coin.id)" nbPrefix icon="plus-outline"></nb-icon>
+              </nb-accordion-item-body>
+            </nb-accordion-item>
+          </nb-accordion>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </ng-container>
+</div> -->

@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+  <div class="col-11">
+    <table mat-table [trackBy]="trackByFn" [dataSource]="dataSource" matSort>
+      <!-- BOUGHT COLUMN -->
+      <ng-container matColumnDef="bought_price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Bought</th>
+        <td mat-cell *matCellDef="let trade">
+          <figure [class]="trade.profit >= 0 ? 'gain-ball' : 'lose-ball'"></figure>
+          <span> {{ trade.bought_price | currency: trade.symbol.slice(0, trade.symbol.length - 4) + ' U$' }}</span>
+        </td>
+      </ng-container>
+
+      <!-- SOLD COLUMN -->
+      <ng-container matColumnDef="sold_price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Sold</th>
+        <td mat-cell *matCellDef="let trade">
+          <span *ngIf="trade.sold_price !== 0">
+            {{ trade.sold_price | currency: trade.symbol.slice(0, trade.symbol.length - 4) + ' U$' }}</span
+          >
+          <span *ngIf="trade.sold_price === 0"> -- </span>
+        </td>
+      </ng-container>
+
+      <!--  DATE COLUMN -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Date</th>
+        <td mat-cell *matCellDef="let trade">
+          {{ trade.date | date: 'dd/MM' }}
+        </td>
+      </ng-container>
+
+      <!-- PROFIT COLUMN -->
+      <ng-container matColumnDef="profit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Profit %</th>
+        <td
+          mat-cell
+          *matCellDef="let trade"
+          [class]="trade.sold_price !== 0 ? (trade.profit >= 0 ? 'positive' : 'negative') : ''"
+        >
+          <span *ngIf="trade.sold_price !== 0"> {{ formatPercentage(trade.profit) }} </span>
+          <span *ngIf="trade.sold_price === 0"> -- </span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

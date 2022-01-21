@@ -1,0 +1,108 @@
+@import "../../../@theme/styles/themes.scss";
+@import "~bootstrap/scss/mixins";
+
+@include nb-install-component() {
+  body {
+    font-family: Barlow, Bold;
+    overflow: hidden;
+    justify-content: center;
+  }
+
+  .positive {
+    color: nb-theme(color-success-100);
+  }
+
+  .gain-ball {
+    background: nb-theme(color-success-100);
+    display: inline-flex;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin: 0;
+    margin-right: 20px;
+  }
+
+  .lose-ball {
+    background: nb-theme(color-danger-500);
+    display: inline-flex;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin: 0;
+    margin-right: 20px;
+  }
+
+  .negative {
+    color: nb-theme(color-danger-500);
+  }
+
+  ::ng-deep {
+    table {
+      border-collapse: collapse;
+    }
+
+    nb-icon {
+      color: nb-theme(color-danger-500);
+    }
+
+    th {
+      border: 0;
+      text-align: center;
+      padding-bottom: 12px;
+      font-weight: 100;
+      font-size: 0.95rem;
+      background-color: nb-theme(color-basic-1000);
+      color: nb-theme(color-basic-100);
+
+      span {
+        display: block;
+      }
+    }
+
+    td {
+      overflow-wrap: break-word;
+      font-size: large;
+      font-weight: 100;
+      background-color: nb-theme(color-basic-1000);
+
+      span {
+        display: inline-flex;
+      }
+    }
+
+    div.mat-sort-header-container {
+      justify-content: center;
+    }
+
+    .mat-table {
+      background-color: transparent;
+    }
+
+    th.mat-sort-header {
+      text-align: center;
+      border-bottom: 0;
+    }
+
+    td.cdk-cell {
+      text-align: center;
+      padding: 10px 3px;
+      border-bottom: 1px solid nb-theme(color-basic-300);
+
+      span {
+        display: inline-block;
+      }
+
+      &.leftAlign {
+        text-align: left;
+      }
+
+      &.medium {
+        min-width: 200px;
+      }
+    }
+
+    tr.mat-row {
+      border-bottom: 1px solid nb-theme(color-basic-1000);
+    }
+  }
+}

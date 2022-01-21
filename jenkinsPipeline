@@ -1,0 +1,82 @@
+import java.text.*
+try {
+  pipeline()
+} catch (e) {
+  postFailure(e)
+} finally {
+  postAlways()
+}
+
+
+def pipeline(){
+    node {
+      def imageId
+      def containerId
+      stage('Clonando GIT') { // for display purposes
+          git branch: 'master', credentialsId: 'GitLabSSHKey', url: 'git@us-south.git.cloud.ibm.com:lb2-consultoria/servicedesk-lb2-front-client.git'
+      }
+      stage('Buscando Imagens e Containers') {
+          imageId = sh(returnStdout: true, script: 'docker images -f "reference=lb2consultoria/lb2servicedesk-client-front" -q')
+          containerId = sh(returnStdout: true, script: 'docker ps -a -f "name=lb2servicedesk-client-front" -q')
+          echo 'Encontrado Imagem '+imageId
+          echo 'Encontrado container '+containerId
+
+      }
+      stage('Building Docker Image') {
+          sh 'docker build -t lb2consultoria/lb2servicedesk-client-front:latest .'
+
+      }
+      stage('Parando e removendo Container') {
+          echo 'Parando container '+containerId
+          if (containerId != '') {
+              sh 'docker stop '+containerId
+              sh 'docker rm '+containerId
+          }
+      }
+          stage('Removendo imagen antiga') {
+          echo 'Removendo imagem '+imageId
+          if (imageId != '') {
+              sh 'docker rmi '+imageId
+          }
+          //sh 'docker rmi $(docker images -f "dangling=true" -q)'
+      }
+      stage('Rodando Container') {
+          sh 'docker run -d --name lb2servicedesk-client-front -p 81:80 lb2consultoria/lb2servicedesk-client-front'
+      }
+  }
+}
+
+def postFailure(e) {
+  println "Failed because of $e"
+  println 'This will run only if failed'
+  discordSend result: currentBuild.result, title: 'Build ' + env.BUILD_NUMBER, link: env.BUILD_URL, webhookURL: 'https://discordapp.com/api/webhooks/742440202966138880/Dehlj4Qe5tzCm_nPRjHXB-pb1zNmZBruH1loxukqXHH0fdJsT0gSxOiKeqZz0RN38PXE'
+
+}
+
+def postAlways() {
+  // println 'This will always run'
+  // discordSend description: 'Build ' + env.BUILD_NUMBER +'\n http://129.0.0.221:81/', link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: 'https://discordapp.com/api/webhooks/742440202966138880/Dehlj4Qe5tzCm_nPRjHXB-pb1zNmZBruH1loxukqXHH0fdJsT0gSxOiKeqZz0RN38PXE'
+  sendChangeLogs()
+
+}
+
+
+@NonCPS
+def sendChangeLogs() {
+    def commitMessages = ""
+    def formatter = new SimpleDateFormat('MM-dd-yyyy HH:mm')
+    def changeLogSets = currentBuild.changeSets
+    for (int i = 0; i < changeLogSets.size(); i++) {
+        def entries = changeLogSets[i].items
+        for (int j = 0; j < entries.length; j++) {
+            def entry = entries[j]
+            commitMessages = commitMessages + "${entry.author} ${entry.commitId}:\n${formatter.format(new Date(entry.timestamp))}: *${entry.msg}*\n"
+        }
+    }
+
+    discordSend description: 'Build ' + env.BUILD_NUMBER +'\n http://129.0.0.221:81/ \n' + 'changes:\n' +  commitMessages, link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: 'https://discordapp.com/api/webhooks/742440202966138880/Dehlj4Qe5tzCm_nPRjHXB-pb1zNmZBruH1loxukqXHH0fdJsT0gSxOiKeqZz0RN38PXE'
+
+}
+
+
+

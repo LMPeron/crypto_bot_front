@@ -1,0 +1,85 @@
+<form [formGroup]="form" [nbSpinner]="loading" nbSpinnerStatus="primary" (ngSubmit)="onSubmit()">
+
+  <!-- FORM NAME -->
+  <div class="form-group row">
+    <div class="col-sm-12 col-md-12">
+      <div class="row">
+        <label for="inputName" class="col-12 col-sm-3 col-lg-2 col-form-label">Nome</label>
+        <div class="col-sm-12 col-xl-6">
+          <input
+            type="text"
+            #inputName
+            nbInput
+            fullWidth
+            placeholder=""
+            formControlName="name"
+            class="form-control"
+            name="inputName"
+            autofocus
+            [status]="f.name.dirty && f.name.invalid ? 'danger' : 'basic'"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM EMAIL -->
+  <div class="form-group row">
+    <div class="col-sm-12 col-md-12">
+      <div class="row">
+        <label for="inputEmail" class="col-12 col-sm-3 col-lg-2 col-form-label">E-mail</label>
+        <div class="col-sm-12 col-xl-6">
+          <input
+            type="email"
+            #inputEmail
+            nbInput
+            fullWidth
+            placeholder=""
+            formControlName="email"
+            class="form-control"
+            name="inputEmail"
+            [status]="(f.email.dirty && f.email.invalid) || invalidEmail ? 'danger' : 'basic'"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM FONE -->
+  <div class="form-group row">
+    <div class="col-sm-5 col-md-6">
+      <div class="row">
+        <label for="inputFone" class="col-12 col-sm-3 col-lg-4 col-form-label">Telefone</label>
+        <div class="col-sm-7 col-xl-6">
+          <input
+            type="text"
+            #inputFone
+            placeholder="(00) 00000-0000"
+            nbInput
+            fullWidth
+            mask=" (00) 0000-0000 || (00) 00000-0000 || (00) 00000-00000 || (00) 00000-000000 || (00) 00000-0000000 || (00) 00000-0000000 || (00) 00000-0000000"
+            [showMaskTyped]="false"
+            formControlName="fone"
+            class="form-control"
+            name="inputFone"  
+            [status]="f.fone.dirty && f.fone.invalid ? 'danger' : 'basic'"
+          />  
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- FORM ACTIVE -->
+  <div class="form-group row">
+    <div class="col-sm-12 col-md-12">
+      <div class="row">
+        <label for="inputActive" class="col-12 col-sm-3 col-lg-2 col-form-label">Ativo</label>
+        <div class="col-12 col-sm-9 col-md-8">
+          <nb-toggle name="inputActive" #inputActive formControlName="active"></nb-toggle>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

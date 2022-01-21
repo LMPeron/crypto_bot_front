@@ -1,0 +1,40 @@
+@import "../../@theme/styles/themes.scss";
+@import "~bootstrap/scss/mixins";
+
+
+.inc-label {
+  font-size: smaller;
+  margin-bottom: 0;
+  color: nb-theme(color-basic-200);
+}
+
+@media (max-width: 300px) {
+  .ta-end {
+    text-align: start;
+  }
+}
+
+h2 {
+  font-weight: bold;
+}
+
+h2.income {
+  color: nb-theme(color-success-100);
+}
+
+::ng-deep {
+  nb-card-body {
+    border: 0;
+    overflow: hidden;
+  }
+
+  #timeline-chart .apexcharts-toolbar {
+    opacity: 1;
+    border: 0;
+  }
+  
+
+  nb-card {
+    border: 0;
+  }
+}

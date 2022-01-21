@@ -1,0 +1,245 @@
+@import "../../../@theme/styles/themes.scss";
+@import "~bootstrap/scss/mixins";
+
+@include nb-install-component() {
+
+  ::ng-deep {
+    .mr {
+      margin-right: 10px;
+    }
+
+    .mb {
+      margin-bottom: 10px;
+    }
+
+    .lb2-dark {
+      color: nb-theme(color-basic-300) !important;
+
+      .c-label {
+        color: nb-theme(color-basic-800) !important;
+      }
+
+      .selected-list .c-btn,
+      .list-area,
+      .c-input,
+      .arrow-down,
+      .arrow-up {
+        background: nb-theme(color-basic-900) !important;
+        border: nb-theme(color-basic-1000);
+        color: nb-theme(color-basic-300) !important;
+      }
+
+      .list-area {
+        border: 1px solid nb-theme(color-basic-1000);
+      }
+
+      .list-filter {
+        border-bottom: 1px solid nb-theme(color-basic-1000);
+      }
+
+      .c-token {
+        background: nb-theme(color-primary-500);
+      }
+
+      .c-remove svg {
+        fill: nb-theme(color-basic-600) !important;
+      }
+
+      .pure-checkbox label::before {
+        border-color: nb-theme(color-primary-500);
+      }
+
+      .pure-checkbox input[type='checkbox']:checked+label:before {
+        background: nb-theme(color-primary-500) !important;
+      }
+
+      .dropdown-list ul li:hover {
+        background: nb-theme(color-basic-700) !important;
+      }
+
+      .selected-item,
+      .dropdown-list ::-webkit-scrollbar-track {
+        background: nb-theme(color-basic-800) !important;
+      }
+
+      .pure-checkbox input[type='checkbox']+label {
+        color: nb-theme(color-basic-300) !important;
+      }
+
+      .selected-list {
+        border: 1px solid #000;
+        border-radius: 4px;
+      }
+    }
+
+    .innerTable {
+      background: nb-theme(color-basic-900);
+      margin-bottom: 10px;
+    }
+  }
+
+  .col-form-label {
+    display: flex;
+    align-items: center;
+  }
+
+
+  input,
+  nb-select,
+  ng-toggle,
+  span {
+    margin: 10px 0;
+  }
+
+  nb-select {
+    width: 100%;
+  }
+
+  .m10 {
+    margin: 10px 0;
+  }
+
+  .lm10 {
+    margin-left: 10px;
+  }
+
+  .mr10 {
+    margin-right: 10px;
+  }
+
+  .mr20 {
+    margin-right: 20px;
+  }
+
+  .ml10 {
+    margin-left: 10px;
+  }
+
+  .ml20 {
+    margin-left: 20px;
+  }
+
+  .ml30 {
+    margin-left: 60px;
+  }
+
+  .mb10 {
+    margin-bottom: 10px;
+  }
+
+  .mt5 {
+    margin-top: 5px;
+  }
+
+  .mt20 {
+    margin-top: 20px;
+  }
+
+  .mt10 {
+    margin-top: 10px;
+  }
+
+  .pad0 {
+    padding: 0;
+  }
+
+  .pr0 {
+    padding-right: 0px;
+  }
+
+  .pl0 {
+    padding-left: 0px;
+  }
+
+  .prl30 {
+    padding: 0px 30px 0px 30px;
+  }
+  
+  .pr30 {
+    padding-right: 60px;
+  }
+
+  .pl30 {
+    padding-left: 60px;
+  }
+
+  .flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .block {
+    display: block;
+  }
+
+  .c-center {
+    place-content: center;
+  }
+
+  .text-align-center {
+    text-align: center;
+  }
+
+  .vertical-align-center {
+    align-self: center;
+  }
+
+  .justify-content-center {
+    justify-content: center;
+  }
+
+  .jcleft {
+    justify-content: left;
+  }
+
+  .align-self-center {
+    align-self: center;
+  }
+
+  input::placeholder {
+    opacity: 40%;
+  }
+
+  .divider {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    opacity: 10%;
+
+
+  }
+
+  hr {
+    border-color: #000;
+  }
+
+  textarea::placeholder {
+    opacity: 40%;
+  }
+
+  nb-select::placeholder {
+    color: green;
+  }
+
+  input[type="date"] {
+    opacity: 40%;
+  }
+
+  select::placeholder {
+    opacity: 40%;
+  }
+
+  textarea {
+    overflow: hidden;
+  }
+
+  .select {
+
+  &.placeholder {
+    color: green;
+  }
+  }
+
+
+
+
+}

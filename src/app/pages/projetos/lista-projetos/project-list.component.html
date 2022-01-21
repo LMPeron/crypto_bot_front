@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-12">
+    <!-- <nb-card>
+      <nb-card-header>Workspaces</nb-card-header>
+      <nb-card-body>
+        <div *ngFor="let wor of workspaceList">
+
+
+          <button (click)="getProjectsByWorkspace(wor.id)">
+            <nb-icon status="primary" icon="edit-2-outline"></nb-icon>
+          </button>
+
+          
+        </div>
+      </nb-card-body>
+    </nb-card> -->
+
+    <ng-container *ngIf="filterActive">
+      <ngx-filter-project (newEvent)="filterEvent($event)"></ngx-filter-project>
+    </ng-container>
+
+    <nb-card>
+      <nb-card-body class="padding-small">
+        <div class="search-bar">
+          <div class="col-85p">
+            <nb-form-field>
+              <nb-icon nbPrefix icon="search-outline"></nb-icon>
+              <input type="text" nbInput fullWidth placeholder="Pesquise na lista" class="search-input"
+                (keyup)="doFilter($event)" />
+            </nb-form-field>
+          </div>
+          <div class="col-15p">
+            <div class="search-bar fr">
+              <button *ngIf="!filterActive" nbButton ghost class="filter-icon" (click)="toggleFilter()"
+                nbTooltip="Abrir filtros" status="primary" size="small">
+                <nb-icon icon="funnel-outline"> </nb-icon>Filtros
+              </button>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+    <ngx-card-project-all type="urgent" [size]="projectListSize">
+      <ngx-project-table [loading]="loadingProjects" [dataSource]="dataSourceAll"></ngx-project-table>
+    </ngx-card-project-all>
+  </div>
+</div>

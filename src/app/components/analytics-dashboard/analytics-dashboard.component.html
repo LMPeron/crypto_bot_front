@@ -1,0 +1,20 @@
+<nb-card>
+  <nb-card-body class="pl-1 pr-1 pt-2">
+    <div class="row">
+      <div class="col">
+        <p class="inc-label">Profit</p>
+
+        <h2 class="medium" *ngIf="!profit"><span class="medium">U$</span> --</h2>
+
+        <h2 *ngIf="profit" [class]="profit > 0 ? 'income-success' : 'income-danger'">
+          <span class="medium">U$</span> {{ moneyFilter(profit) }}
+        </h2>
+      </div>
+
+      <div class="col">
+        <p class="inc-label ta-end">Investment</p>
+        <h2 class="ta-end"><span class="medium">U$</span> {{ investment ? moneyFilter(investment) : '--' }}</h2>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

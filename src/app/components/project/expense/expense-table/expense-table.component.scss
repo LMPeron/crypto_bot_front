@@ -1,0 +1,67 @@
+@import "../../../../@theme/styles/themes.scss";
+@import "~bootstrap/scss/mixins";
+
+@include nb-install-component() {
+  ::ng-deep {
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      text-align: center;
+      border-bottom: 1px solid #000;
+      padding-bottom: 12px;
+      font-weight: 100;
+      font-style: italic;
+      font-size: 0.95rem;
+      // color: nb-theme(color-basic-300);
+
+      span {
+        display: block;
+      }
+    }
+
+    td {
+      overflow-wrap: break-word;
+      max-width: 230px;
+    }
+
+    div.mat-sort-header-container {
+      justify-content: center;
+    }
+
+
+    th.mat-sort-header {
+      text-align: center;
+    }
+
+    td.cdk-cell {
+      text-align: center;
+      padding: 10px 3px;
+      border: none;
+
+      span {
+        display: block;
+      }
+
+      &.leftAlign {
+        text-align: left;
+      }
+
+      &.medium {
+        min-width: 200px;
+      }
+    }
+
+    tr.mat-row {
+      border-bottom: 1px solid nb-theme(color-basic-1000);
+    }
+
+
+    .mat-row:hover {
+      background-color: nb-theme(color-basic-700);
+      cursor: pointer;
+    }
+  }
+}

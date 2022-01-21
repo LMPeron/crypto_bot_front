@@ -1,0 +1,73 @@
+<table [nbSpinner]="loading" nbSpinnerStatus="primary" mat-table [trackBy]="trackByFn" [dataSource]="dataSource"
+  matSort>
+  <!-- NUMBER COLUMN -->
+  <ng-container matColumnDef="number">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">#</th>
+    <td mat-cell *matCellDef="let project">
+      <a [routerLink]=" '/projetos/' + project.id ">
+        {{ project.number }}
+      </a>
+    </td>
+  </ng-container>
+
+  <!-- STATUS COLUMN -->
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Status</th>
+    <td mat-cell *matCellDef="let project">
+      <span [class]="project.status_class"> {{ project.status != null ? project.status.label : "" }} </span>
+    </td>
+  </ng-container>
+
+  <!-- NAME COLUMN -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Nome</th>
+    <td mat-cell *matCellDef="let project">
+      {{ project.name }}
+    </td>
+  </ng-container>
+
+  <!-- CRATEDBY COLUMN -->
+  <ng-container matColumnDef="createdBy">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Criado por</th>
+
+    <td mat-cell *matCellDef="let project">
+      {{ project.createdBy.name + ' ' + project.createdBy.lastName }}
+    </td>
+  </ng-container>
+
+  <!--  COMPANYNAME COLUMN -->
+  <ng-container matColumnDef="companyName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">
+      <span>Cliente</span>
+    </th>
+    <td mat-cell *matCellDef="let project">
+      {{ project.companyClient? project.companyClient.name : project.clientName}}
+    </td>
+  </ng-container>
+
+  <!-- CREATIONDATE COLUMN -->
+  <ng-container matColumnDef="creationDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Data de Criação</th>
+
+    <td mat-cell *matCellDef="let project">
+      {{ project.creationDate | date: 'dd/LL/yyyy' }}
+    </td>
+  </ng-container>
+
+  <!-- NUMBER COLUMN -->
+  <ng-container matColumnDef="dueDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Prazo de Solução</th>
+
+    <td mat-cell *matCellDef="let project">
+      <span nbTooltip="Sem prazo de resposta" nbTooltipPlacement="top" nbTooltipStatus="control"
+        *ngIf="!project.dueDate">
+        ---
+      </span>
+      <ngx-progress-bar-projects *ngIf="project.dueDate" [project]="project"></ngx-progress-bar-projects>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns" (dblclick)="handleRowdbClick(row.id)"
+    nbTooltip="Duplo clique para editar " nbTooltipPlacement="right"></tr>
+</table>

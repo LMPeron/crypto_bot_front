@@ -1,0 +1,202 @@
+<nb-card>
+  <nb-tabset>
+    <nb-tab tabTitle="Visão Geral - Tarefa ">
+      <ng-container *ngIf="!loading">
+        <form>
+          <ng-container *ngIf="projectTask.status">
+            <div class="form-group row">
+              <div class="col-sm-12 col-md-12">
+                <div class="row">
+                  <label for="inputStatus" class="label col-12 col-sm-3 col-lg-2 col-form-label"> Status </label>
+                  <div class="col-12 col-sm-9 col-lg-10">
+                    <input
+                      type="text"
+                      nbInput
+                      [disabled]="!editable"
+                      fieldSize="small"
+                      name="inputStatus"
+                      [(ngModel)]="projectTask.status.name"
+                      [class]="projectTask.status.class"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+          <div class="form-group row">
+            <div class="col-sm-12 col-md-12">
+              <div class="row">
+                <label for="inputSummary" class="col-12 col-sm-3 col-lg-2 col-form-label"> Título </label>
+                <div class="col-12 col-sm-9 m10">
+                  <p>{{ task.title }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-12 col-md-12">
+              <div class="row">
+                <label for="inputDescription" class="col-12 col-sm-3 col-lg-2 col-form-label"> Descrição </label>
+                <div class="col-12 col-sm-9 col-lg-10 m10">
+                  <textarea
+                    type="text"
+                    nbInput
+                    fullWidth
+                    name="inputDescription"
+                    #inputDescription="ngModel"
+                    [(ngModel)]="projectTask.description"
+                    rows="8"
+                    [disabled]="!editable"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-12 col-md-6">
+              <div class="row">
+                <label for="inputCompany" class="col-12 col-sm-3 col-md-4 col-form-label"> Empresa </label>
+                <div class="col-12 col-sm-9 col-md-8">
+                  <nb-select
+                    size="small"
+                    name="inputCompany"
+                    [(ngModel)]="task.company"
+                    [nbTooltip]="task.companyName"
+                    #inputCompany="ngModel"
+                    [disabled]="!editable"
+                  >
+                    <ng-container value="null">
+                      <nb-option> -- </nb-option>
+                    </ng-container>
+                    <ng-container>
+                      <nb-option [value]="task.company">
+                        {{ task.companyName }}
+                      </nb-option>
+                    </ng-container>
+                  </nb-select>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="row">
+                <label for="inputBranch" class="col-12 col-sm-3 col-md-4 col-form-label"> Filial </label>
+                <div class="col-12 col-sm-9 col-md-8">
+                  <nb-select
+                    size="small"
+                    name="inputBranch"
+                    [(ngModel)]="task.branch"
+                    [nbTooltip]="task.branchName"
+                    [disabled]="!editable"
+                  >
+                    <ng-container value="null">
+                      <nb-option> -- </nb-option>
+                    </ng-container>
+                    <ng-container>
+                      <nb-option [value]="task.branch">
+                        {{ task.branchName }}
+                      </nb-option>
+                    </ng-container>
+                  </nb-select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12 col-md-6">
+              <div class="row">
+                <label for="taskType" class="col-12 col-sm-3 col-md-4 col-form-label"> Tipo </label>
+                <div class="col-12 col-sm-9 col-md-8">
+                  <nb-select
+                    size="small"
+                    name="taskType"
+                    [(ngModel)]="task.taskType.name"
+                    [nbTooltip]="task.taskType.name"
+                    [disabled]="!editable"
+                  >
+                    <nb-option [value]="task.taskType.name">
+                      {{ task.taskType.name }}
+                    </nb-option>
+                  </nb-select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12 col-md-6">
+              <div class="row">
+                <label for="taskTypeGroup" class="col-12 col-sm-3 col-md-4 col-form-label"> Grupo </label>
+                <div class="col-12 col-sm-9 col-md-8">
+                  <nb-select
+                    size="small"
+                    name="taskTypeGroup"
+                    [(ngModel)]="task.taskType.group.name"
+                    [nbTooltip]="task.taskType.group.name"
+                    [disabled]="!editable"
+                  >
+                    <nb-option [value]="task.taskType.group.name">
+                      {{ task.taskType.group.name }}
+                    </nb-option>
+                  </nb-select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-12 col-md-6">
+              <div class="row">
+                <label for="inputOwnerName" class="col-12 col-sm-3 col-md-4 col-form-label"> Responsável </label>
+                <div class="col-12 col-sm-9 col-md-8">
+                  <nb-select *ngIf="task.owner === null" size="small" name="inputOwnerName" [disabled]="!editable">
+                    <ng-container>
+                      <nb-option value=""> -- </nb-option>
+                    </ng-container>
+                  </nb-select>
+
+                  <nb-select
+                    *ngIf="task.owner !== null"
+                    size="small"
+                    name="inputOwnerName"
+                    #inputOwnerName="ngModel"
+                    [(ngModel)]="task.owner.name"
+                    [nbTooltip]="task.owner.name"
+                    [disabled]="!editable"
+                  >
+                    <nb-option [value]="task.owner.name">
+                      {{ task.owner.name }}
+                    </nb-option>
+                  </nb-select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </ng-container>
+    </nb-tab>
+    <nb-tab tabTitle="Informações do Chamado ">
+      <ngx-visao-geral [ticket]="ticket"></ngx-visao-geral>
+    </nb-tab>
+    <nb-tab tabTitle="Horas Trabalhadas " *ngIf="taskViewRules | rulesFilter: 'horas'">
+      <div *ngIf="task.id && canAddNewWorkingtime" class="actions-bar">
+        <button
+          nbButton
+          outline
+          status="primary"
+          size="small"
+          class="fr"
+          *ngIf="task.id && canAddNewWorkingtime"
+          (click)="newWorkingHourDialog()"
+        >
+          Adicionar
+        </button>
+      </div>
+
+      <ng-container *ngIf="task.status">
+        <ngx-timesheet-table [taskStatus]="task.status.id" [event]="newTimesheetEvent" [task]="task">
+        </ngx-timesheet-table>
+      </ng-container>
+    </nb-tab>
+  </nb-tabset>
+</nb-card>

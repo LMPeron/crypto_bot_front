@@ -1,0 +1,40 @@
+<div class="container" ngxDnd (fileDropped)="onFileDropped($event)" *ngIf="showForm">
+  <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event.target.files)" />
+  <button nbButton status="primary" size="small" outline for="fileDropRef" class="fr">Adicionar um anexo</button>
+</div>
+<div class="files-list" *ngIf="files">
+  <p *ngIf="files?.length > 0">Arquivos anexos</p>
+  <p *ngIf="files?.length === 0">Nenhum arquivo anexo</p>
+  <div class="single-file" *ngFor="let file of files; let i = index">
+    <div class="row">
+      <div class="col-12">
+        <a [href]="getLink(file?.id)" class=""> {{ file?.name }}</a>
+        <ng-container *ngIf="file?.progress">
+          <div class="progress-cont">
+            <div class="progress" [style.width]="file?.progress + '%'"></div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="!file?.progress">
+          <nb-icon
+            status="warning"
+            icon="trash-2-outline"
+            width="20px"
+            alt="Deletefile"
+            (click)="deleteFile(i, file.id)"
+            [nbSpinner]="fileLoading"
+          >
+          </nb-icon>
+        </ng-container>
+
+        <!-- <button
+          [nbSpinner]="fileLoading"
+          nbButton
+          alt="Deletefile"
+          (click)="deleteFile(i, file.id)"
+        >
+          <nb-icon status="warning" icon="trash-2-outline"></nb-icon>
+        </button> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<nb-card class="dialog-card">
+  <nb-card-header>
+    Abertura de novo Projeto
+    <nb-actions size="small" class="inline">
+      <nb-action class="fr">
+        <nb-icon icon="close-outline" status="primary" (click)="close()"> </nb-icon>
+      </nb-action>
+    </nb-actions>
+  </nb-card-header>
+  <nb-card-body class="novoChamadoBack">
+    <div class="col-12">
+      <h5 status="primary">Criação de novo Projeto feita com sucesso!</h5>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <button nbButton outline status="primary" class="fr" [routerLink]="['/projetos/novo']">NOVO PROJETO</button>
+      </div>
+      <div class="col-6">
+        <button
+          nbButton
+          outline
+          status="success"
+          [routerLink]="'/projetos/' + project.id"
+          class="fl"
+          (click)="dismiss()"
+        >
+          VER PROJETO
+        </button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

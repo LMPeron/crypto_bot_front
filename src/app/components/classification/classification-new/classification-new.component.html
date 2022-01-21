@@ -1,0 +1,20 @@
+<nb-card>
+  <nb-card-header>
+    <div class="titulo flex">
+      Nova Classificação
+      <nb-actions size="small" class="ml-auto">
+        <nb-action icon="refresh-outline" nbTooltip="Resetar" (click)="resetForm()"> </nb-action>
+
+        <nb-action>
+          <button (click)="submitForm()" nbButton outline status="success" size="small" [disabled]="buttonDisabled">
+            Salvar
+          </button>
+        </nb-action>
+      </nb-actions>
+    </div>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ngx-classification-form (buttonStatus)="reciverEvent($event)"></ngx-classification-form>
+  </nb-card-body>
+</nb-card>

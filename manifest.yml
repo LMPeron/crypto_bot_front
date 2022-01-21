@@ -1,0 +1,8 @@
+applications:
+- path: dist/helpdesk2020/.
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: prd-servicedesk-client-front
+  host: prd-servicedesk-client-front
+  disk_quota: 1024M

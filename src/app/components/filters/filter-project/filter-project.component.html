@@ -1,0 +1,114 @@
+<nb-card>
+  <nb-card-body [formGroup]="form">
+    <div class="row">
+      <div class="col-12">
+        <button nbButton ghost class="filter-icon" (click)="closeFilter()" status="primary" size="small">
+          <nb-icon icon="close-outline"></nb-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <nb-select placeholder="Selecione um status" fullWidth class="mb-10" name="status" formControlName="status">
+          <nb-option value="">Aberto / Em Execução / Pausada</nb-option>
+          <nb-option value="s1">Aberto</nb-option>
+          <nb-option value="s2">Em Execução</nb-option>
+          <nb-option value="s3">Encerrado</nb-option>
+          <nb-option value="s4">Reaberto</nb-option>
+          <nb-option value="s5">Cancelado</nb-option>
+        </nb-select>
+      </div>
+      <div class="col-12 col-md-3">
+        <nb-select placeholder="Tipo de data" fullWidth class="mb-10" [(selected)]="date" formControlName="dateType">
+          <nb-option value="creation_date">Data de Abertura</nb-option>
+          <nb-option value="start_date">Data de Início</nb-option>
+          <nb-option value="finish_date">Data de Encerramento</nb-option>
+          <nb-option value="start_date_preview">Data Prevista de Início</nb-option>
+          <nb-option value="finish_date_preview">Data de Prevista de Encerramento</nb-option>
+        </nb-select>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <div class="form-group row">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-12">
+                <small class="mr-10">Inicio</small>
+                <input type="date" nbInput size="small" formControlName="startDate" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-3">
+        <div class="form-group row">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-12">
+                <small class="mr-10">Fim</small>
+                <input type="date" nbInput formControlName="endDate" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div formArrayName="filters" *ngIf="filters.controls.length > 0">
+      <div *ngFor="let filter of filters.controls; let i = index" [formGroupName]="i">
+        <div class="row">
+          <div class="col-12 col-md-3">
+            <nb-select
+              placeholder="Selecione um filtro"
+              fullWidth
+              class="mb-10"
+              formControlName="type"
+              (selectedChange)="onChangeFilter(i)"
+            >
+              <nb-option *ngFor="let op of filterOptions" [value]="op.type">
+                {{ op.name }}
+              </nb-option>
+            </nb-select>
+          </div>
+          <div class="col-10 col-md-3">
+            <input
+              type="text"
+              nbInput
+              placeholder="Digite um valor"
+              formControlName="value"
+              fullWidth
+              *ngIf="filter.value.type === 'description' || filter.value.type === 'number'"
+            />
+
+            <nb-select
+              placeholder="Escolha uma empresa"
+              fullWidth
+              class="mb-10"
+              *ngIf="filter.value.type === 'company'"
+              formControlName="value"
+            >
+              <nb-option *ngFor="let comp of companies" [value]="comp.id">
+                {{ comp.name }}
+              </nb-option>
+            </nb-select>
+            
+          </div>
+          <div class="col-2">
+            <button nbButton outline status="primary" (click)="addFilter()">
+              <nb-icon status="primary" icon="plus-outline"></nb-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button nbButton outline status="primary" class="fl mb-10 mt-10" (click)="applyFilter()">Filtrar</button>
+    <button nbButton outline class="mb-10 ml-10 mt-10" (click)="resetFilter()" nbTooltip="Limpar filtro">
+      <nb-icon icon="refresh-outline"></nb-icon>
+    </button>
+
+
+  </nb-card-body>
+</nb-card>

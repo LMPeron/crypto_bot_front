@@ -1,0 +1,444 @@
+<nb-card>
+  <nb-card-header *ngIf="project"> Editar Projeto </nb-card-header>
+  <nb-card-header *ngIf="!project"> Novo Projeto</nb-card-header>
+  <nb-card-body [nbSpinner]="loadingField">
+    <!--    FORM NOME    -->
+
+    <form [formGroup]="projectForm">
+      <div class="form-group row justify-content-center mt20">
+        <div class="col-sm-11 col-md-11">
+          <label for="inputName" class="col-12 col-form-label"> Nome </label>
+
+          <input
+            type="text"
+            nbInput
+            fullWidth
+            placeholder="Insira o nome do seu projeto"
+            name="inputName"
+            #inputName
+            formControlName="name"
+            class="form-control"
+            autofocus
+            [status]="f.name.dirty && f.name.invalid ? 'danger' : 'primary'"
+          />
+        </div>
+      </div>
+
+      <!--    FORM DESCRIPTION    -->
+
+      <div class="form-group row justify-content-center">
+        <div class="col-sm-11 col-md-11">
+          <label for="inputDescription" class="col-12 col-form-label mb10"> Descrição </label>
+          <textarea
+            type="text"
+            nbInput
+            name="inputDescription"
+            fullWidth
+            formControlName="description"
+            placeholder="Insira a descrição do Projeto."
+            #inputDescription
+            rows="8"
+            maxlength="1980"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="row justify-content-center divider">
+        <div class="col-11">
+          <hr class="black" />
+        </div>
+      </div>
+
+      <!-- FORM USERS INVOLVED -->
+
+      <div class="form-group row">
+        <div class="col-sm-12 col-md-6 col-xl-6 mb10">
+          <div class="row justify-content-center">
+            <div class="col-12 pl30 pr30">
+              <label for="inputUsersInvolved" class="col-12 col-form-label mb10">
+                Usuários Envolvidos
+              </label>
+
+              <angular2-multiselect
+                [data]="dropdownListUser"
+                [(ngModel)]="selectedUsers"
+                [settings]="dropdownUsersInvolvedSettings"
+                (onSelect)="onItemSelect($event)"
+                (onDeSelect)="onItemDeSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+                (onDeSelectAll)="onDeSelectAll($event)"
+                name="inputUsersInvolved"
+                formControlName="usersInvolved"
+              ></angular2-multiselect>
+            </div>
+          </div>
+        </div>
+
+        <!-- FORM STAKEHOLDERS -->
+
+        <div class="col-sm-12 col-md-6 col-xl-6 mb10">
+          <div class="row justify-content-center">
+            <div class="col-12 pl30 pr30">
+              <label for="inputStakeholders" class="col-12 col-sm-12 col-lg-10 col-form-label mb10">
+                Stakeholders
+              </label>
+              <angular2-multiselect
+                [data]="dropdownListStakeholder"
+                [(ngModel)]="selectedStakeholders"
+                [settings]="dropdownStakeholdersSettings"
+                (onSelect)="onItemSelect($event)"
+                (onDeSelect)="onItemDeSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+                (onDeSelectAll)="onDeSelectAll($event)"
+                name="inputStakeholders"
+                formControlName="stakeholders"
+              ></angular2-multiselect>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="form-group row">
+        <div class="col-sm-12 col-md-6">
+          <div class="row justify-content-center">
+            <!--    FORM OWNER    -->
+
+            <div class="col-sm-12 col-md-12 col-lg-5 ml10 mr20">
+              <label for="inputOwner" class="col-12 col-sm-12 col-lg-12 col-form-label"> Responsável </label>
+
+              <nb-select
+                size="medium"
+                name="inputOwner"
+                formControlName="owner"
+                #inputOwner
+                [status]="f.owner.dirty && f.owner.invalid ? 'danger' : 'basic'"
+                [(ngModel)]="owner.id"
+              >
+                <nb-option *ngFor="let user of usersByCompany" [value]="user.id"> {{ user.name }} </nb-option>
+              </nb-select>
+            </div>
+
+            <!-- FORM ESTIMATED EFFORT -->
+
+            <div class="col-sm-12 col-md-12 col-lg-5 ml10 mr10">
+              <label for="inputEstimatedEffort" class="col-12 col-form-label">Esforço Estimado </label>
+              <input
+                type="number"
+                #inputEstimatedEffort
+                nbInput
+                placeholder="(horas)"
+                fullWidth
+                formControlName="estimatedEffort"
+                class="form-control"
+                name="inputEstimatedEffort"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+          <div class="row justify-content-center">
+            <!--  FORM START DATE -->
+
+            <div class="col-sm-5 col-md-12 col-lg-5 ml10 mr20">
+              <label for="inputStartDate" class="col-12 col-form-label"> Previsão de Início </label>
+
+              <input
+                type="date"
+                class="form-control"
+                nbInput
+                name="inputDueStartDate"
+                formControlName="dueStartDate"
+                #inputDueStartDate
+              />
+            </div>
+
+            <!-- FORM DUE DATE -->
+
+            <div class="col-sm-5 col-md-12 col-lg-5 ml10 mr10">
+              <label for="inputDueDate" class="col-12 col-form-label"> Previsão de Término </label>
+
+              <input
+                type="date"
+                class="form-control"
+                datetime="dd-MM-yyyy HH:mm:ss"
+                nbInput
+                name="inputDueDate"
+                formControlName="dueDate"
+                #inputDueDate
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center divider">
+        <div class="col-11">
+          <hr class="black" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-6 col-md-6">
+          <div class="row justify-content-center">
+            <!--    FORM CLASSIFICATION    -->
+            <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5 ml10 mr20">
+              <label for="inputClassification" class="col-12 col-form-label"> Classificação </label>
+
+              <nb-select
+                size="small"
+                name="inputClassification"
+                formControlName="classification"
+                #inputClassification
+                [status]="f.classification.dirty && f.classification.invalid ? 'danger' : 'basic'"
+              >
+                <nb-option *ngFor="let classification of classificationList" [value]="classification.id">
+                  {{ classification.name }}
+                </nb-option>
+              </nb-select>
+            </div>
+
+            <!--    FORM PRIORITY    -->
+
+            <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5 mr10 ml10">
+              <label for="inputPriority" class="col-12 col-form-label"> Prioridade </label>
+
+              <nb-select
+                size="small"
+                name="inputPriority"
+                formControlName="priority"
+                #inputPriority
+                [status]="f.priority.dirty && f.priority.invalid ? 'danger' : 'basic'"
+              >
+                <nb-option *ngFor="let priority of priorityList" [value]="priority.id"> {{ priority.name }} </nb-option>
+              </nb-select>
+            </div>
+          </div>
+        </div>
+
+        <!-- FORM ESTIMATED REVENUE -->
+
+        <div class="col-sm-6 col-md-6">
+          <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-12 col-lg-5 ml10 mr10">
+              <label for="inputEstimatedRevenue" class="col-12 col-form-label">Receita Estimada</label>
+
+              <input
+                type="text"
+                #inputEstimatedRevenue
+                nbInput
+                currencyMask 
+                [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }"
+                placeholder="R$"
+                fullWidth
+                formControlName="estimatedRevenue"
+                name="inputEstimatedRevenue"
+              />
+            </div>
+
+            <!-- FORM REAL REVENUE -->
+
+            <div class="col-sm-12 col-md-12 col-lg-5 ml10 mr10">
+              <label for="inputRealRevenue" class="col-12 col-form-label">Receita real</label>
+              <input
+                type="text"
+                #inputRealRevenue
+                nbInput
+                fullWidth
+                currencyMask 
+                [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }"
+                placeholder="R$"
+                formControlName="realRevenue"
+                name="inputRealRevenue"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-6 col-md-6">
+          <div class="row justify-content-center">
+
+
+            <div class="col-sm-12 col-md-12 col-lg-5 ml10 mr10">
+
+              <!--    FORM COMPANYCLIENT    -->
+
+              <ng-container *ngIf="this.f.isRegisteredClient.value">
+                <label for="inputCompanyClient" class="col-12 col-form-label"> Cliente </label>
+                <nb-select
+                  weight="120px"
+                  placeholder="Selecione o cliente"
+                  size="medium"
+                  name="inputCompanyClient"
+                  formControlName="companyClient"
+                  #inputCompany
+                  fullWidth
+                  [status]="f.companyClient.dirty && f.companyClient.invalid ? 'danger' : 'primary'"
+                >
+                  <nb-option value="null" disabled>--</nb-option>
+
+                  <!-- TODO METODO TRAZER COMPANIES ATIVAS -->
+                  <nb-option *ngFor="let comp of companies" [value]="comp.id"> {{ comp.name }} </nb-option>
+                </nb-select>
+              </ng-container>
+
+              <!--    FORM CLIENT NAME    -->
+
+              <ng-container *ngIf="!this.f.isRegisteredClient.value">
+                <label for="inputClientName" class="col-12 col-form-label"> Cliente </label>
+                <div class="col-12">
+                  <input
+                    type="text"
+                    name="inputClientName"
+                    nbInput
+                    fullWidth
+                    placeholder="Insira o nome do cliente"
+                    formControlName="clientName"
+                    class="form-control"
+                    [status]="f.clientName.dirty && f.clientName.invalid ? 'danger' : 'primary'"
+                    autofocus
+                  />
+                </div>
+              </ng-container>
+            </div>
+
+            <!--    FORM REGISTERED    -->
+
+            <div class="col-sm-12 col-md-5 ml20">
+              <label for="isRegisteredClient" class="col-form-label col-12 c-center"> Cadastrado </label>
+              <div class="row justify-content-center mt10">
+                <div class="col-12 align-self-center text-align-center">
+                  <nb-toggle
+                    (change)="manageValidators(true)"
+                    name="isRegisteredClient"
+                    formControlName="isRegisteredClient"
+                  ></nb-toggle>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-6">
+          <div class="row justify-content-center">
+            <!-- FORM ESTIMATED SPEND -->
+
+            <div class="col-sm-12 col-md-12 col-lg-5 ml10 mr10">
+              <label for="inputEstimatedSpend" class="col-12 col-form-label">Gasto Estimado</label>
+
+              <input
+                type="text"
+                #inputEstimatedSpend
+                nbInput
+                currencyMask 
+                [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }"
+                placeholder="R$"
+                fullWidth
+                formControlName="estimatedSpend"
+                class="form-control"
+                name="inputEstimatedSpend"
+              />
+            </div>
+
+            <!-- FORM REAL SPEND -->
+
+            <div class="col-sm-12 col-md-12 col-lg-5 ml10 mr10">
+              <label for="inputRealSpend" class="col-12 col-form-label">Gasto real</label>
+
+              <input
+                type="text"
+                #inputRealSpend
+                nbInput
+                fullWidth
+                currencyMask 
+                [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }"
+                placeholder="R$"
+                formControlName="realSpend"
+                class="form-control"
+                name="inputRealSpend"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center divider">
+        <div class="col-11">
+          <hr class="black" />
+        </div>
+      </div>
+
+      <!-- ADDITIONAL MENU -->
+
+      <div class="form-group row justify-content-center">
+        <div class="col-sm-11 col-md-11">
+          <label for="additionalMenu" class="col-12 col-form-label"> Detalhes </label>
+          <div class="col-4 pad0">
+            <nb-select
+              size="medium"
+              name="additionalMenu"
+              placeholder="Escolher detalhe"
+              #additionalField
+              (selectedChange)="additionalField.selected = changeAdditionalMenuOption(additionalField.selected)"
+            >
+              <nb-option *ngFor="let option of additionalsMenuFalse" [value]="option.formName">
+                {{ option.name }}
+              </nb-option>
+
+            </nb-select>
+          </div>
+        </div>
+      </div>
+
+      <ng-container *ngFor="let option of additionalsMenu">
+        <!--    ADDITIONALS FORMS    -->
+
+        <div class="form-group row justify-content-center">
+          <div class="col-sm-10 col-md-10">
+            <label [for]="option.formName" class="col-12 col-form-label mb10"> {{ option.name }} </label>
+
+            <textarea
+              type="text"
+              nbInput
+              [name]="option.formName"
+              fullWidth
+              [formControlName]="option.formName"
+              [placeholder]="'Insira a ' + option.name + ' do projeto.'"
+              rows="8"
+              maxlength="1980"
+            ></textarea>
+          </div>
+
+          <div class="col-1">
+            <nb-icon
+              size="small"
+              icon="close-outline"
+              nbTooltip="Desativar"
+              (click)="changeAdditionalMenuOption(option.formName)"
+            ></nb-icon>
+          </div>
+        </div>
+      </ng-container>
+    </form>
+  </nb-card-body>
+
+  <nb-card-footer>
+    <button
+      class="fr"
+      nbButton
+      outline
+      status="success"
+      [disabled]="!projectForm.valid"
+      [nbSpinner]="loading"
+      nbSpinnerStatus="success"
+      (click)="onSubmit()"
+      [class.btn-pulse]="submitted"
+    >
+      SALVAR
+    </button>
+  </nb-card-footer>
+</nb-card>

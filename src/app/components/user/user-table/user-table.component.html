@@ -1,0 +1,74 @@
+<div class="row first-row">
+  <div class="col-11">
+    <table mat-table [trackBy]="trackByFn" [dataSource]="dataSource" matSort>
+      <!-- <ngx-user-form></ngx-user-form> -->
+
+      <!-- NAME COLUMN -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Name</th>
+        <td mat-cell *matCellDef="let user">
+          {{ user.name }}
+        </td>
+      </ng-container>
+
+      <!-- API KEY COLUMN -->
+      <ng-container matColumnDef="api_key">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">API Key</th>
+        <td mat-cell *matCellDef="let user">******{{ user.api_key.slice(user.api_key.length - 3) }}</td>
+      </ng-container>
+
+      <!--  SECRET COLUMN -->
+      <ng-container matColumnDef="secret">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Secret</th>
+        <td mat-cell *matCellDef="let user">******{{ user.secret.slice(user.secret.length - 3) }}</td>
+      </ng-container>
+
+      <!-- ACTIVE COLUMN -->
+      <!-- <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Active</th>
+        <td mat-cell *matCellDef="let user">
+          {{ user.active }}
+        </td>
+      </ng-container> -->
+
+      <!-- INVESTMENT COLUMN -->
+      <ng-container matColumnDef="investment">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Investment</th>
+        <td mat-cell *matCellDef="let user">
+          {{ user.investment | currency: 'USD$' }}
+        </td>
+      </ng-container>
+
+      <!-- PROFIT COLUMN -->
+      <ng-container matColumnDef="profit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Profit %</th>
+        <td mat-cell *matCellDef="let user" [class]="user.profit >= 0 ? 'positive' : 'negative'">
+          {{ user.profit ? formatPercentage(user.profit) : '0%' }}
+        </td>
+      </ng-container>
+
+      <!-- CREATION_DATE COLUMN -->
+      <ng-container matColumnDef="creation_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Member Since</th>
+        <td mat-cell *matCellDef="let user">
+          {{ user.creation_date ? (user.creation_date | date: 'dd/MM/yyyy') : '-' }}
+        </td>
+      </ng-container>
+
+      <!-- ACTIONS COLUMN -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center"></th>
+        <td mat-cell *matCellDef="let user">
+          <nb-actions size="x-small" class="ml-auto">
+            <nb-action nbTooltip="Delete" (click)="inactivateUser(user.id)">
+              <nb-icon icon="trash-outline" class="fr"></nb-icon>
+            </nb-action>
+          </nb-actions>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

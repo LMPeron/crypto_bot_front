@@ -1,0 +1,67 @@
+<form [formGroup]="userForm">
+  <div class="form-group row">
+    <!--    FORM NOME    -->
+    <div class="col-auto">
+      <input
+        type="text"
+        nbInput
+        fullWidth
+        placeholder="Name"
+        name="inputName"
+        #inputName
+        formControlName="name"
+        class="form-control"
+      />
+    </div>
+
+    <!--    FORM API KEY    -->
+    <div class="col-auto">
+      <input
+        type="text"
+        nbInput
+        fullWidth
+        placeholder="API Key"
+        name="inputApiKey"
+        #inputApiKey
+        formControlName="api_key"
+        class="form-control"
+      />
+    </div>
+
+    <!--    FORM SECRET    -->
+    <div class="col-auto">
+      <input
+        type="text"
+        nbInput
+        fullWidth
+        placeholder="Secret"
+        name="inputSecret"
+        #inputSecret
+        formControlName="secret"
+        class="form-control"
+      />
+    </div>
+
+    <!--    FORM INVESTMENT    -->
+    <div class="col-auto">
+      <input
+        type="number"
+        nbInput
+        fullWidth
+        placeholder="Investment"
+        name="inputSecret"
+        #inputSecret
+        formControlName="investment"
+        class="form-control"
+      />
+    </div>
+
+    <!--    SUBMIT    -->
+    <div class="col-2 as-end">
+      <button class="fr" nbButton fullWidth hero status="success" (click)="onSubmit()">SUBMIT</button>
+    </div>
+    <div class="col-2 as-end">
+      <button class="fr" nbButton fullWidth outline status="danger" (click)="cancel()">CANCEL</button>
+    </div>
+  </div>
+</form>

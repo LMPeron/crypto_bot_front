@@ -1,0 +1,78 @@
+<table nbSpinnerStatus="primary" mat-table [trackBy]="trackByFn" [dataSource]="dataSource" matSort>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+
+      <!-- EXPENSETYPE COLUMN -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Tipo</th>
+        <td mat-cell *matCellDef="let expense">
+          {{ expense.expenseType.name }}
+        </td>
+      </ng-container>
+
+      <!-- QUANTITY COLUMN -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Quantidade</th>
+        <td mat-cell *matCellDef="let expense">
+          {{ expense.quantity }}
+        </td>
+      </ng-container>
+
+      <!-- VALUE COLUMN -->
+      <ng-container matColumnDef="value">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Valor</th>
+        <td mat-cell *matCellDef="let expense">
+          {{ expense.value | currency:'BRL':true:'1.2-2' }}
+        </td>
+      </ng-container>
+
+      <!-- DATE COLUMN -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Data</th>
+        <td mat-cell *matCellDef="let expense">
+          {{ expense.date | date: 'dd/LL/yyyy' }}
+        </td>
+      </ng-container>
+
+      <!-- ACTIONS -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let element">
+          <nb-icon
+            status="primary"
+            nbTooltip="Desativar"
+            icon="edit-2-outline"
+            (onClick)="inactivateExpense()"
+          ></nb-icon>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (dblclick)="handleRowdbClick(row.id)"
+        nbTooltip="Duplo clique para editar "
+        nbTooltipPlacement="right"
+      ></tr>
+    </mat-expansion-panel-header>
+
+
+    <!-- DESCRIPTION COLUMN -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="align-center">Valor</th>
+      <td mat-cell *matCellDef="let expense">
+        {{ expense.description }}
+      </td>
+    </ng-container>
+
+  </mat-expansion-panel>
+</table>
+
+<table *ngIf="!loading">
+  <tr *ngIf="!dataSource.data.length">
+    <td style="text-align: center;" [attr.colspan]="displayedColumns.length">
+      <h6>Nenhum registro encontrado!</h6>
+    </td>
+  </tr>
+</table>  
